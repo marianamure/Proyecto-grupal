@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edita tu producto</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{url_for('static', filename='edita_producto.css')}}">
+</head>
+<body>
+    <div class="container">
+        <header class="d-flex justify-content-end col-9">
+            <img src="../static/images/cannapp2.png" alt="cannapp_logo2" />
+            <div class="button">
+                <a href="/mi_perfil_cultivador" class="btn btn-primary">Mi Perfil</a>
+                <a href="/logout" class="btn btn-danger">Cerrar Sesión</a>
+            </div>
+        </header>
+        <div class="row">
+            <div class="col-12" id="database">
+                <h2>Ingresa aqui tu producto</h2>
+                {% with messages = get_flashed_messages(category_filter=['publicacion']) %}
+                    {% if messages %}
+                        <div class="alert alert-danger">
+                            {% for message in messages %}
+                                <p>{{message}}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                {% endwith %}
+                <form action="/nuevo_producto" method="post" enctype="multipart/form-data"> 
+                    <input type="hidden" value="{{user.id}}" name="user_id">
+                    
+                    <div class="form-group">
+                        <label for="producto"><b>Producto:</b></label>
+                        <input type="text" id="producto" name="producto" class="form-control">
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label for="descripcion"><b>Descripcion:</b></label>
+                        <input type="text" id="descripcion" name="descripcion" class="form-control">
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label for="punto_venta"><b>Punto de venta:</b></label>
+                        <input type="text" id="punto_venta" name="punto_venta" class="form-control">
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label for="foto"><b>Foto:</b></label>
+                        <input type="file" id="foto" name="foto" class="form-control">
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label for="presentacion"><b>Presentacion:</b></label>
+                        <input type="text" id="presentacion" name="presentacion" class="form-control">
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label for="precio"><b>Precio:</b></label>
+                        <input type="text" id="precio" name="precio" class="form-control">
+                    </div>
+                    <br>
+                    <div>
+                        <input type="submit" value="Enviar" class="btn btn-secondary btn-lg">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

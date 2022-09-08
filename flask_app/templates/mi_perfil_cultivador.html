@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi Perfil</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{url_for('static', filename='mi_perfil_cultivador.css')}}">
+</head>
+<body>
+    <div class="container">
+        <div class="col-12">
+            <header class="d-flex justify-content-between align-items-center">
+                <img src="../static/images/cannapp2.png" alt="cannapp_logo2" />
+                <h1>Bienvenid@ {{user.first_name}}</h1>
+                
+                <a href="/muro_cultivador" class="btn btn-success">Muro</a>
+                <a href="/logout" class="btn btn-danger">Cerrar Sesión</a>
+            </header>
+            <hr>
+            <h2>Informacion por cultivo</h2>
+            <br>
+            <a href="/nuevo_dato" class="btn btn-secondary">Ingresar datos</a>
+            <button class="btn btn-info" onclick="exportTableToExcel('datoscultivo', 'Reporte cultivo')">Exportar a Excel</button>
+            <br>
+            <table class="table table-hover table-table border table table-sm" id="datoscultivo">
+                <thead class="table-light">
+                    <tr>
+                        <th>Finca</th>
+                        <th>Municipio</th>
+                        <th>Nombre del Fertilizante</th>
+                        <th>Cantidad de fertilizante aplicado</th>
+                        <th>Fecha de la cosecha</th>
+                        <th>Enfermedades</th>
+                        <th>Produccion</th>
+                        <th>Descripcion</th>
+                        <th>Imagen</th>
+                        <th>Acciones</th>
+                        
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for publicacion in publicaciones %}
+                        <tr>
+                            <td>{{.finca}}</td>
+                            <td>{{.municipio}}</td>
+                            <td>{{.nombre_fertilizante}}</td>
+                            <td>{{.cantidad_fertilizante}}</td>
+                            <td>{{.fecha_cosecha}}</td>
+                            <td>{{.enfermedades}}</td>
+                            <td>{{.produccion}}</td>
+                            <td>{{.descripcion}}</td>
+                            <td>
+                                {% if publicacion.imagen != None %}
+                                <a href="{{url_for('static', filename='images/'+publicacion.imagen)}}" download><br>Descargar</a>
+                                {% endif %}
+                            </td>
+                            <td>
+                                <a href="/editar/publicacion/{{publicacion.id}}" class="btn btn-secondary btn-sm " >Editar</a>
+                                <a href="/eliminar/publicacion/{{publicacion.id}}" class="btn btn-danger btn-sm delete" data-confirm="Esta seguro de eliminar este elemento?">Borrar</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+
+
+            <a href="/nuevo_producto" class="btn btn-secondary">Ingresar producto</a>
+            <table class="table table-hover table-table border table table-sm" id="datoscultivo">
+                <thead class="table-light">
+                    <tr>
+                        <th>Producto</th>
+                        <th>Descripcion</th>
+                        <th>Punto de Venta</th>
+                        <th>Foto</th>
+                        <th>Presentacion</th>
+                        <th>Precio</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for publicacion in publicaciones %}
+                        <tr>
+                            <td>{{.producto}}</td>
+                            <td>{{.descripcion}}</td>
+                            <td>{{.punto_venta}}</td>
+                            <td>
+                                {% if publicacion.imagen != None %}
+                                <a href="{{url_for('static', filename='images/'+publicacion.imagen)}}" download><br>Descargar</a>
+                                {% endif %}
+                            </td>
+                            <td>{{.presentacion}}</td>
+                            <td>{{.precio}}</td>
+                            <td>
+                                <a href="/editar/publicacion/{{publicacion.id}}" class="btn btn-secondary btn-sm " >Editar</a>
+                                <a href="/eliminar/publicacion/{{publicacion.id}}" class="btn btn-danger btn-sm delete" data-confirm="Esta seguro de eliminar este elemento?">Borrar</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="../static/js/tableToExcel.js" ></script>
+    <script src="../static/js/app.js" ></script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Datos del cultivo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{url_for('static', filename='nuevo_dato.css')}}">
+</head>
+<body>
+    <div class="container">
+        <header class="d-flex justify-content-end col-9">
+            <img src="../static/images/cannapp2.png" alt="cannapp_logo2" />
+            <div class="button">
+                <a href="/mi_perfil_cultivador" class="btn btn-primary">Mi Perfil</a>
+                <a href="/logout" class="btn btn-danger">Cerrar Sesión</a>
+        </div>
+        </header>
+        <div class="row">
+            <div class="col-12" id="database">
+                <h2>Ingresa los datos de tu cultivo</h2>
+                {% with messages = get_flashed_messages(category_filter=['publicacion']) %}
+                    {% if messages %}
+                        <div class="alert alert-danger">
+                            {% for message in messages %}
+                                <p>{{message}}</p>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                {% endwith %}
+                <form action="/nuevo_dato" method="post" enctype="multipart/form-data"> 
+                    <input type="hidden" value="{{user.id}}" name="user_id">
+                    
+                    <div class="form-group">
+                        <label for="finca"><b>Finca:</b></label>
+                        <input type="text" id="finca" name="finca" class="form-control">
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label for="municipio"><b>Municipio:</b></label>
+                        <input type="text" id="municipio" name="municipio" class="form-control">
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label for="nombre_fertilizante"><b>Nombre del fertilizante:</b></label>
+                        <input type="text" id="nombre_fertilizante" name="nombre_fertilizante" class="form-control">
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label for="cantidad_fertilizante"><b>Cantidad de fertilizante aplicado (kg/ha):</b></label>
+                        <input type="text" id="cantidad_fertilizante" name="cantidad_fertilizante" class="form-control">
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label for="fecha_cosecha"><b>Fecha de la cosecha:</b></label>
+                        <input type="date" id="fecha_cosecha" name="fecha_cosecha" class="form-control">
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label for="enfermedades"><b>Enfermedades:</b></label>
+                        <select class="form-control form-select" name="enfermedades" id="enfermedades">
+                            <option value=""></option>
+                            <option value="deficiencia">Ninguna</option>
+                            <option value="infecciosa">Infecciosa</option>
+                            <option value="deficiencia">Deficiencia</option>
+                        </select>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label for="produccion"><b>Produccion (kg/ha):</b></label>
+                        <input type="text" id="produccion" name="produccion" class="form-control">
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label for="descripcion"><b>Descripcion:</b></label>
+                        <textarea id="descripcion" name="descripcion" class="form-control"></textarea>
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label for="imagen"><b>Imagen:</b></label>
+                        <input type="file" id="imagen" name="imagen" class="form-control">
+                    </div>
+                    <br>
+                    <div>
+                        <input type="submit" value="Enviar" class="btn btn-secondary btn-lg">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

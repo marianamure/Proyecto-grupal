@@ -1,0 +1,53 @@
+<!DOCTYPE html><!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{url_for('static', filename='carrito.css')}}">
+
+</head>
+<body>
+    <div class="container">
+        <div class="col-12">
+            <header class="d-flex justify-content-between align-items-center">
+                <img src="../static/images/cannapp2.png" alt="cannapp_logo2" />
+                <h1>Bienvenid@ {{user.first_name}}</h1>
+                <a href="/muro_comprador" class="btn btn-danger">Atras</a>
+                <a href="/logout" class="btn btn-danger">Cerrar Sesión</a>
+            </header>
+            <hr>
+
+            <div class="col-12">
+                <table class="table table-hover table-table border table table-sm" id="datoscultivo">
+                    <thead class="table-light">
+                        <tr>
+                            <th>Producto</th>
+                            <th>Cantidad</th>
+                            <th>Precio unidad</th>
+                            <th>Total</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for publicacion in publicaciones %}
+                            <tr>
+                                <td>{{.producto}}</td>
+                                <td>{{.cantidad}}</td>
+                                <td>{{.precio_unidad}}</td>
+                                <td>{{.total}}</td>
+                                <td>
+                                    <a href="/eliminar/publicacion/{{publicacion.id}}" class="btn btn-danger btn-sm delete" data-confirm="Esta seguro de eliminar este elemento?">Borrar</a>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <a href="/compra" class="btn btn-danger btn-sm delete" data-confirm="Esta seguro de eliminar este elemento?">Comprar ahora</a>
+        </div>
+    </div>
+</body>
+</html>
