@@ -101,7 +101,7 @@ ENGINE = InnoDB;
 -- Table `weedproject`.`comments`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `weedproject`.`comments` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `comment` TEXT NULL,
   `created_at` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` DATETIME NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -127,7 +127,7 @@ ENGINE = InnoDB;
 -- Table `weedproject`.`shopping`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `weedproject`.`shopping` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `name_bank` VARCHAR(150) NULL,
   `address` VARCHAR(150) NULL,
   `home_delivery` TINYINT NULL,
@@ -150,6 +150,7 @@ ENGINE = InnoDB;
 -- Table `weedproject`.`shopping_cart`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `weedproject`.`shopping_cart` (
+  `id` INT NOT NULL AUTO_INCREMENT,
   `product_id` INT NOT NULL,
   `shopping_id` INT NOT NULL,
   `amount` INT NULL,
