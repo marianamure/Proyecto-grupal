@@ -1,4 +1,4 @@
-# Proyecto Grupal del Web Developmen bootcamp de Coding Dojo Colombia
+# Proyecto Grupal del Web Development bootcamp de Coding Dojo Colombia
 
 ## Grupo # 1
 
