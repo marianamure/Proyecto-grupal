@@ -4,66 +4,82 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Registro</title>
+    <title>Registro comprador</title>
+    <link rel="shortcut icon" href="../static/images/logo.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{url_for('static', filename='registro_comprador.css')}}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Signika+Negative&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/registro_comprador.css">
 </head>
 <body>
     <br>
     <div class="container">
-        <div>
-            <h2>Regístrate y forma parte de esta gran comunidad</h2>
+        <div class="col-10" id="barra">
+            <div class="d-flex justify-content-center align-items-center">
+                <img class="logo" src="../static/images/logo claro.png" alt="logo_claro"/>
+                <h3>Regístrate y haz parte de esta gran comunidad</h3>
+            </div>
         </div>
         <br>
         <div class="row">
-            <div class="col-12">
-                {% with messages = get_flashed_messages(category_filter=['registro1']) %}
-                    {% if messages %}
-                        <div class="alert alert-danger">
-                            {% for message in messages %}
-                                <p>{{message}}</p>
-                            {% endfor %}
+            <div class="col-10" id="form">
+                <div class="col-8">
+                    {% with messages = get_flashed_messages(category_filter=['registro1']) %}
+                        {% if messages %}
+                            <div class="alert alert-danger">
+                                {% for message in messages %}
+                                    <p>{{message}}</p>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    {% endwith %}
+                    <form action="/registro_comprador" method="post"> 
+                        <div class="form-group">
+                            <label for="first_name"><b>Nombre completo o razon social:</b></label>
+                            <input type="text" id="first_name" name="first_name" class="form-control">
                         </div>
-                    {% endif %}
-                {% endwith %}
-                <form action="/registro_comprador" method="post"> 
-                    <div class="form-group">
-                        <label for="first_name"><b>Nombre completo o razon social:</b></label>
-                        <input type="text" id="first_name" name="first_name" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="identificacion"><b>Numero de identificacion:</b></label>
-                        <input type="text" id="identificacion" name="identificacion" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="email"><b>E-mail:</b></label>
-                        <input type="text" id="email" name="email" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="direccion"><b>Direccion:</b></label>
-                        <input type="text" id="direccion" name="direccion" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="password"><b>Password:</b></label>
-                        <input type="password" id="password" name="password" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="confirm_password"><b>Confirma Password:</b></label>
-                        <input type="password" id="confirm_password" name="confirm_password" class="form-control">
-                    </div>
-                    <div class="form-group">
-                        <label for="comprador"><b>Tipo de comprador:</b></label>
-                        <select class="form-control form-select" name="comprador" id="comprador">
-                            <option value=""></option>
-                            <option value="deficiencia">Empresa</option>
-                            <option value="infecciosa">Persona Natural</option>
-                        </select>
-                    </div>
-                    <br>
-                    <input type="submit" value="Registrarme" class="btn btn-success">
-                    
-                    <a href="/" class="btn btn-warning">Inicio</a>
-                </form>
+                        <br>
+                        <div class="form-group">
+                            <label for="identificacion"><b>Numero de identificacion:</b></label>
+                            <input type="text" id="identificacion" name="identificacion" class="form-control">
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label for="email"><b>E-mail:</b></label>
+                            <input type="text" id="email" name="email" class="form-control">
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label for="direccion"><b>Direccion:</b></label>
+                            <input type="text" id="direccion" name="direccion" class="form-control">
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label for="password"><b>Password:</b></label>
+                            <input type="password" id="password" name="password" class="form-control">
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label for="confirm_password"><b>Confirma Password:</b></label>
+                            <input type="password" id="confirm_password" name="confirm_password" class="form-control">
+                        </div>
+                        <br>
+                        <div class="form-group">
+                            <label for="comprador"><b>Tipo de comprador:</b></label>
+                            <select class="form-control form-select" name="comprador" id="comprador">
+                                <option value=""></option>
+                                <option value="deficiencia">Empresa</option>
+                                <option value="infecciosa">Persona Natural</option>
+                            </select>
+                        </div>
+                        <br>
+                        <div class="botones">
+                            <input type="submit" value="Registrarme" class="btn btn-success">
+                            <a href="/" class="btn btn-warning"><img src="../static/images/inicio.jpg" alt="inicio"/> Inicio</a>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
