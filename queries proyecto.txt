@@ -1,0 +1,77 @@
+-----------------------------------------------------------------------------
+SELECT:
+
+# mostrar cultivos por id cultivador
+    SELECT * FROM crops WHERE id = %(id)s;
+# mostrar productos por id cultivador
+    SELECT * FROM products WHERE id = %(id)s;
+# mostrar carrito
+    
+# mostrar comentarios en publicación
+    SELECT crops.*, comment FROM crops LEFT JOIN comments ON crops.id = comments.crop_id WHERE crops.id = %(id)s;
+# mostrar publicación
+    SELECT id, description, image, cultivators_id FROM crops WHERE cultivators_id = %(id)s;
+# mostrar publicaciones
+    SELECT description, image, cultivators_id FROM crops;
+# mostrar productos para compradores
+    SELECT * FROM products;
+
+SELECT * FROM weedproject.shopping join (select product_id, shopping_id, amount, name, price from
+shopping_cart  join products on product_id = id) as shopping_products on shopping_id = id
+where user_id = 1 and state = 'pendiente';
+# cargar informacion del carrito
+select * from crops where share = 1 order by updated_at desc;
+# cargar informacion del muro 
+select * from crops where id = 1;
+# cargar informacion de una publicacion
+select * from comments where crop_id = 1;
+# cargar informacion del comentario
+select * from products where cultivators_id = 1;
+# cargar informacion de los productos
+select * from products;
+# cargar productos para los clientes
+
+-----------------------------------------------------------------------------
+INSERT:
+# registro comprador
+    INSERT INTO users (full_name, n_identification, email, address, password) VALUES (%(full_name)s, %(n_identification)s, %(email)s, %(address)s, %(password)s);
+# registro cultivador
+    INSERT INTO users (full_name, n_identification, email, password) VALUES (%(full_name)s, %(n_identification)s, %(email)s, %(password)s);
+# agregar comentario
+    INSERT INTO comments (comment, crop_id, user_id) VALUES (%(comment)s, %(crop_id)s, %(user_id)s);
+# agregar cultivo
+    INSERT INTO users (estate, municipality, fertilizer, f_amount, date, disease, product, description, user_id) VALUES (%(estate)s, %(municipality)s, %(fertilizer)s, %(f_amount)s, %(date)s, %(disease)s, %(product)s, %(description)s, %(user_id)s);
+# agregar compra (info pse)
+    INSERT INTO shopping (name_bank, address, get_product, method_payment, user_id) VALUES (%(name_bank)s, %(address)s, %(get_product)s, %(method_payment)s, %(user_id)s);
+
+-----------------------------------------------------------------------------
+UPDATE:
+# actualizar cultivo
+    UPDATE crops SET estate = %(estate)s, municipality = %(municipality)s, fertilizer = %(fertilizer)s, f_amount = %(f_amount)s, date = %(date)s, disease = %(disease)s, product = %(product)s, description = %(description)s, image = %(image)s WHERE id = %(id)s;
+# actualizar producto
+    UPDATE products SET name = %(name)s, description = %(description)s, p_sale = %(p_sale)s, presentation = %(presentation)s, price = %(price)s WHERE id = %(id)s;
+# actualizar publicación (comentario)
+    UPDATE comments SET comment = %(comment)s WHERE id = %(id)s;
+# actualizar comprador
+    UPDATE users SET full_name = %(full_name)s, n_identification = %(n_identification)s, email = %(email)s, address = %(address)s, password = %(password)s, type_buyer = %(type_buyer)s WHERE id = %(id)s;
+# actualizar cultivador
+    UPDATE users SET full_name = %(full_name)s, n_identification = %(n_identification)s, email = %(email)s, password = %(password)s, type_buyer = %(type_buyer)s WHERE id = %(id)s;
+
+-----------------------------------------------------------------------------
+DELETE:
+
+# eliminar cultivo
+    DELETE FROM crops WHERE id = %(id)s;
+# eliminar producto
+    DELETE FROM products WHERE id = %(id)s;
+# eliminar publicación (comentario)
+    DELETE FROM comments WHERE id = %(id)s;
+# eliminar comprador
+    DELETE FROM users WHERE id = %(id)s;
+# eliminar cultivador
+    DELETE FROM users WHERE id = %(id)s; 
+# eliminar producto carrito
+    DELETE FROM shopping_cart WHERE id = %(id)s; <- falta un id en shopping_cart y id de compra
+# eliminar carrito por id de compra
+
+-----------------------------------------------------------------------------
