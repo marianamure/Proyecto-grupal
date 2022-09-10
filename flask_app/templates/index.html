@@ -5,36 +5,48 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    <link rel="shortcut icon" href="../static/images/logo.png">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{url_for('static', filename='index.css')}}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Signika+Negative&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/index.css">
 </head>
 <body>
     <header>
-        <nav class="d-flex justify-content-between align-items-center">
-            <form action="/login" method="post">
-                
-                    <label for="email" class="email"><b>E-mail:</b></label>
-                    <input type="text" id="email" name="email" >
-
-                    <label for="password" class="email"><b>Contraseña:</b></label>
-                    <input type="password" id="password" name="password">
-
-                <input type="submit" value="Iniciar Sesión" class="btn btn-warning m-4">
-            </form>
-        </nav>
+        <div class="row align-items-center">
+            <div class="col-3" id="logo">
+                <div class="d-flex justify-content-center">
+                    <img class="logo" src="../static/images/logo claro.png" alt="logo_claro"/>
+                </div>
+            </div>
+            <div class="col-9">
+                <nav class="d-flex justify-content-center align-items-center">
+                    <form action="/login" method="post">
+                        <label for="email" class="email"><b>E-mail:</b></label>
+                        <input type="text" id="email" name="email" >
+                        <label for="password" class="email"><b>Contraseña:</b></label>
+                        <input type="password" id="password" name="password">
+                        <input type="submit" value="Iniciar Sesión" class="btn btn-warning m-4" id="buttom">
+                    </form>
+                </nav>
+                <div  class= "col-8">
+                    <div class="d-flex align-items-center justify-content-around ">
+                        <a href="/registro_cultivador" class="boton">Registro cultivador</a> 
+                        <img src="../static/images/registro.jpg" alt="registro" class="icono"/>
+                        <a href="/registro_comprador" class="boton">Registro comprador</a>
+                    </div>
+                </div>
+            </div>
+        </div>    
     </header>
     <main>
-        <div class="main-top" id="logo">
-            <img src="../static/images/cannapp1.png" alt="cannapp_logo" />
-        </div>
         <div class="main-bottom">
             <div class="col-12">
                 <video class="img-fluid" autoplay muted loop>
-                    <source src="../static/video/plant modified.mp4" type="video/mp4">
+                    <source src="../static/video/germinacion.mp4" type="video/mp4">
                 </video>
-            </div>
-                <a href="/registro_cultivador" class="btn btn-success">Registro cultivador</a> 
-                <a href="/registro_comprador" class="btn btn-success">Registro comprador</a> 
+            </div>       
         </div>
     </main>
 </body>
