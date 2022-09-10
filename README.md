@@ -2,9 +2,9 @@
 
 ## Grupo # 1
 
-# Andres
-# Mariana
-# Viviana
-# Santiago
-# Ricardo
+- Andres
+- Mariana
+- Viviana
+- Santiago
+- Ricardo
 
