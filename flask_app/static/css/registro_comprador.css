@@ -1,0 +1,56 @@
+* {
+    margin: 0px auto;
+    padding: 0px auto;
+    font-family: 'Signika Negative', sans-serif;
+}
+
+#form  {
+    background-image: url("../images/fondo_comprador_2.jpg");
+    background-position: center;
+    background-size: auto;
+    background-repeat: no-repeat;
+    margin-bottom: 20px;
+}
+h3 {
+    text-align: center;
+    
+}
+
+.logo {
+    height: 50px;
+}
+
+#barra {
+    background-color: rgb(44, 82, 44);
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+b {
+    text-shadow: 0.1em 0.1em 0.2em gray;
+
+    
+}
+
+.form-control {
+    background-color:transparent;
+}
+
+.botones {
+    margin-bottom: 20px;
+}
+
+.btn-warning {
+    margin-left: 40px;
+    box-shadow: 2px 2px black;
+}
+
+.btn-success {
+    box-shadow: 2px 2px black;
+}
+
+.botones img {
+    height: 25px;
+    border-radius: 100px;
+}
