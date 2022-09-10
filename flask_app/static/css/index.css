@@ -1,0 +1,61 @@
+*{
+    margin: 0px auto;
+    padding: 0px auto;
+}
+
+.logo {
+    height: 100px;
+    margin-left: 100px;
+}
+
+header {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-family: 'Signika Negative', sans-serif;
+    font-size: large;
+}
+
+nav {
+    background-color:rgb(91, 132, 106);
+    border-radius: 20px;
+    width: 80%;
+    margin-bottom: 10px;
+    color: whitesmoke;
+    text-shadow: 0.1em 0.1em 0.2em black;
+    height: 60px;
+}
+
+label {
+    margin-left: 20px;
+}
+
+.icono {
+    height: 60px;
+    border-radius: 100px;
+    background-color: coral;
+}
+
+.boton {
+    background-color: rgb(229, 106, 72);
+    color: black;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    box-shadow: 2px 2px black;
+
+}
+
+#buttom {
+    box-shadow: 2px 2px black;
+
+}
+
+video {
+    width: 85%;
+    display: flex;
+}
+
+a:hover{
+    color: #fff;
+  }
