@@ -1,0 +1,51 @@
+* {
+    margin: 0px auto;
+    padding: 0px auto;
+    font-family: 'Signika Negative', sans-serif;
+}
+
+.salida, .perfil{
+    height: 25px;
+    
+    margin-right: 10px;
+
+}
+.logo {
+    height: 50px;
+}
+
+#barra {
+    background-color: rgb(44, 82, 44);
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+}
+h4 {
+    text-align: center;
+    color: rgb(44, 82, 44);
+}
+
+
+.btn {
+    box-shadow: 2px 2px black;
+}
+
+.card-body {
+    width: 80%;
+    
+}
+
+a:hover{
+    color: #fff;
+  }
+
+#boton {
+    background-color: #33a48a;
+    color:white;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    box-shadow: 2px 2px black;
+
+}
