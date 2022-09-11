@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Muro</title>
+    <title>Muro cultivador</title>
     <link rel="shortcut icon" href="../static/images/logo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -27,7 +27,9 @@
             <br>
             <div class="col-12">
                 <div class="card">
-                    <div class="card-title"></div>
+                    <div class="card-title">
+                        
+                    </div>
                     <div class="card-body">
                         <div>
                             <b>Descripcion:</b> {{publicaciones.descripcion}}
@@ -41,11 +43,8 @@
                     {% for comentario in comentarios %}
                         <div class="card">
                             <div class="card-title">{{comentario.sender}}dice:</div>
-                            <div class="card-text">{{comentario.contenido}}
-                                <div class="d-flex justify-content-sm-end align-items-center">
-                                    <a class="btn btn-danger" href="/eliminar/comentario/{{comentario.id}}">Borrar</a>
-                                </div>
-                            </div>
+                            <div class="card-text">{{comentario.contenido}}</div>                            
+                            <a class="btn btn-danger" href="/eliminar/comentario/{{comentario.id}}"><img src="../static/images/borrar.jpg" alt="borrar" class="borrar">Borrar</a>                                                       
                         </div>
                     {% endfor %}
 
@@ -56,9 +55,8 @@
                             <input type="text" id="comentario" name="contenido" class="form-control">
                             <input type="hidden" value="{{publicaciones.id}}" name="publicacion_id">
                             <input type="hidden" value="{{user.id}}" name="user_id">
-                            
-    
-                            <input type="submit" value="Enviar" class="btn btn-secondary btn-lg">
+                            <br>
+                            <input type="submit" value="Enviar" class="btn btn-secondary">
                         </form>
                     </div>
                 </div>

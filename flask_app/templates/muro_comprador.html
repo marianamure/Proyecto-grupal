@@ -5,21 +5,26 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Muro Compras</title>
+    <link rel="shortcut icon" href="../static/images/logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Signika+Negative&display=swap" rel="stylesheet">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{url_for('static', filename='muro_cultivador.css')}}">
+    <link rel="stylesheet" href="../static/css/muro_comprador.css">
+
 
 </head>
 <body>
     <div class="container">
         <div class="col-12">
-            <header class="d-flex justify-content-between align-items-center">
-                <img src="../static/images/cannapp2.png" alt="cannapp_logo2" />
+            <header class="d-flex justify-content-between align-items-center" id="barra">
+                <img class="logo" src="../static/images/logo claro.png" alt="logo_claro"/>                
                 <h1>Bienvenid@ {{user.first_name}}</h1>
 <!--                <a href="/mi_perfil" class="btn btn-danger">Mi Perfil</a>-->
-                <a href="/logout" class="btn btn-danger">Cerrar Sesión</a>
+                <a href="/logout" class="btn btn-danger"><img src="../static/images/salida.jpg" alt="salida" class="salida"/>Cerrar Sesión</a>
             </header>
             <hr>
-            <h4>Aqui podras comprara los productos </h4>
+            <h4>Aqui podras comprar hojas de canabis o sus productos </h4>
             <br>
 
             <!--Barrra de busqueda de productos-->
@@ -27,37 +32,50 @@
             <!--Carrusel con los productos disponibles-->
             <div class="col-12">
                 <div class="card">
-                    <div class="card-title"></div>
+                    <div class="card-title">
+                        <h3><b>Vendedor:</b> {{cultivators.full_name}}</h3>
+                    </div>
                     <div class="card-body">
-                        <div>
-                            <b>Descripcion:</b> {{publicaciones.descripcion}}
-                        </div>
-                        <div>
-                            <b>Imagen:</b> {{publicaciones.imagen}}
-                            <img class="foto" src="{{ url_for('static', filename='images/'+publicaciones.imagen ) }}" alt="foto" />
-                        </div>
-
-                        <h4>Comentarios Recibidos</h4>
-                    {% for comentario in comentarios %}
-                        <div class="card">
-                            <div class="card-title">{{comentario.sender}}dice:</div>
-                            <div class="card-text">{{comentario.contenido}}
-                            <a class="btn btn-danger" href="/eliminar/comentario/{{comentario.id}}">Borrar</a>
+                        <div class="container">
+                            <div class="row row-cols-4">
+                                <div class="col">
+                                    <img class="foto" src="{{ url_for('static', filename='images/'+publicaciones.imagen ) }}" alt="foto" />
+                                    <div>{{products.name}}</div>
+                                    <div>{{products.descripcion}}</div>
+                                    <div>{{products.presentation}}</div>
+                                    <div>{{products.price}}</div>
+                                    <a href="/comprar" class="btn btn-success"><img src="../static/images/Carrito compras.png" alt="comprar" class="comprar"/>Comprar</a>
+                                </div>
+                                <br>
+                                <div class="col">
+                                    <div><img class="foto" src="{{ url_for('static', filename='images/'+publicaciones.imagen ) }}" alt="foto" /></div>
+                                    <div>{{products.name}}</div>
+                                    <div>{{products.descripcion}}</div>
+                                    <div>{{products.presentation}}</div>
+                                    <div>{{products.price}}</div>
+                                    <a href="/comprar" class="btn btn-success"><img src="../static/images/Carrito compras.png" alt="comprar" class="comprar"/>Comprar</a>
+                                </div>
+                                <br>
+                                <div class="col">
+                                    <div><img class="foto" src="{{ url_for('static', filename='images/'+publicaciones.imagen ) }}" alt="foto" /></div>
+                                    <div>{{products.name}}</div>
+                                    <div>{{products.descripcion}}</div>
+                                    <div>{{products.presentation}}</div>
+                                    <div>{{products.price}}</div>
+                                    <a href="/comprar" class="btn btn-success"><img src="../static/images/Carrito compras.png" alt="comprar" class="comprar"/>Comprar</a>
+                                </div>
+                                <br>
+                                <div class="col">
+                                    <div><img class="foto" src="{{ url_for('static', filename='images/'+publicaciones.imagen ) }}" alt="foto" /></div>
+                                    <div>{{products.name}}</div>
+                                    <div>{{products.descripcion}}</div>
+                                    <div>{{products.presentation}}</div>
+                                    <div>{{products.price}}</div>
+                                    <a href="/comprar" class="btn btn-success"><img src="../static/images/Carrito compras.png" alt="comprar" class="comprar"/>Comprar</a>
+                                </div>
                             </div>
                         </div>
-                    {% endfor %}
 
-                        <hr>
-
-                        <form action="/send_comentario" method="post">
-                            <label for="comentario" class="comentario"><b> Escribe tu comentario:</b></label>
-                            <input type="text" id="comentario" name="contenido" class="form-control">
-                            <input type="hidden" value="{{publicaciones.id}}" name="publicacion_id">
-                            <input type="hidden" value="{{user.id}}" name="user_id">
-                            
-    
-                            <input type="submit" value="Enviar" class="btn btn-secondary btn-lg">
-                        </form>
                     </div>
                 </div>
             </div>
