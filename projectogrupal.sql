@@ -84,6 +84,7 @@ CREATE TABLE IF NOT EXISTS `weedproject`.`products` (
   `p_sale` TEXT NULL,
   `presentation` VARCHAR(255) NULL,
   `price` VARCHAR(45) NULL,
+  `image` VARCHAR(255) NULL,
   `created_at` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` DATETIME NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `cultivators_id` INT NOT NULL,
