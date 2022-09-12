@@ -25,24 +25,18 @@
         <div class="row">
             <div class="col-10" id="form">
                 <div class="col-9">
-                    {% with messages = get_flashed_messages(category_filter=['registro1']) %}
-                        {% if messages %}
-                            <div class="alert alert-danger">
-                                {% for message in messages %}
-                                    <p>{{message}}</p>
-                                {% endfor %}
-                            </div>
-                        {% endif %}
-                    {% endwith %}
-                    <form action="/registro_cultivador" method="post"> 
+
+                    <div id="alertMessage"></div>
+
+                    <form action="/registro_cultivador" method="post" id="cultivator_registrer_js"> 
                         <div class="form-group">
-                            <label for="first_name"><b>Nombre completo o razon social:</b></label>
-                            <input type="text" id="first_name" name="first_name" class="form-control">
+                            <label for="full_name"><b>Nombre completo o razon social:</b></label>
+                            <input type="text" id="full_name" name="full_name" class="form-control">
                         </div>
                         <br>
                         <div class="form-group">
-                            <label for="identificacion"><b>Numero de identificacion:</b></label>
-                            <input type="text" id="identificacion" name="identificacion" class="form-control">
+                            <label for="n_identification"><b>Numero de identificacion:</b></label>
+                            <input type="text" id="n_identification" name="n_identification" class="form-control">
                         </div>
                         <br>
                         <div class="form-group">
@@ -69,5 +63,6 @@
             </div>
         </div>
     </div>
+    <script src="{{url_for('static', filename='js/cultivator_register.js')}}"></script>
 </body>
 </html>
