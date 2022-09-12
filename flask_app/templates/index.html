@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -14,19 +14,31 @@
 </head>
 <body>
     <header>
-        <div class="row align-items-center">
+        <div class="row justify-content-center align-items-top">
             <div class="col-3" id="logo">
                 <div class="d-flex justify-content-center">
                     <img class="logo" src="../static/images/logo claro.png" alt="logo_claro"/>
                 </div>
             </div>
             <div class="col-9">
-                <nav class="d-flex justify-content-center align-items-center">
-                    <form action="/login" method="post">
-                        <label for="email" class="email"><b>E-mail:</b></label>
-                        <input type="text" id="email" name="email" >
-                        <label for="password" class="email"><b>Contraseña:</b></label>
-                        <input type="password" id="password" name="password">
+                <nav>
+                    <form class= "form-inline d-flex align-items-center" action="/login" method="post">
+                        <div class="form-group mx-sm-2">
+                            <label for="email" class="email"><b>E-mail:</b></label>
+                            <input type="text" id="email" name="email" >
+                        </div>
+                        <div class="form-group mx-sm-3">
+                            <label for="password" class="email"><b>Contraseña:</b></label>
+                            <input type="password" id="password" name="password">
+                        </div>
+                        <div class="form-group row mx-sm-3">
+                            <label for="clase_usuario"><b>Clase de Usuario</b></label>
+                            <select class="form-select" name="clase_usuario">
+                                <option value=""></option>
+                                <option value="Cultivador">Cultivador</option>
+                                <option value="Comprador">Comprador</option>
+                            </select>
+                        </div>
                         <input type="submit" value="Iniciar Sesión" class="btn btn-warning m-4" id="buttom">
                     </form>
                 </nav>
@@ -51,3 +63,4 @@
     </main>
 </body>
 </html>
+
