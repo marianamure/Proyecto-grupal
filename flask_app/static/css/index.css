@@ -4,8 +4,7 @@
 }
 
 .logo {
-    height: 100px;
-    margin-left: 100px;
+    height: 80px;
 }
 
 header {
@@ -18,22 +17,23 @@ header {
 nav {
     background-color:rgb(91, 132, 106);
     border-radius: 20px;
-    width: 80%;
+    width: 90%;
     margin-bottom: 10px;
     color: whitesmoke;
     text-shadow: 0.1em 0.1em 0.2em black;
-    height: 60px;
+    height: 90px;
+    padding-left: 10px;
+    
 }
 
-label {
-    margin-left: 20px;
-}
+
 
 .icono {
     height: 60px;
     border-radius: 100px;
     background-color: coral;
 }
+
 
 .boton {
     background-color: rgb(229, 106, 72);
@@ -43,7 +43,7 @@ label {
     padding: 10px 20px;
     border-radius: 10px;
     box-shadow: 2px 2px black;
-
+   
 }
 
 #buttom {
@@ -58,4 +58,8 @@ video {
 
 a:hover{
     color: #fff;
-  }
+}
+
+.form-select {
+    height: 40%;
+}
