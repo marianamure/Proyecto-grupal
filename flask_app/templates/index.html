@@ -1,4 +1,3 @@
-DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -22,7 +21,8 @@ DOCTYPE html>
             </div>
             <div class="col-9">
                 <nav>
-                    <form class= "form-inline d-flex align-items-center" action="/login" method="post">
+                    <div id="alertMessage"></div>
+                    <form class= "form-inline d-flex align-items-center" action="/login" method="post" id = "login_js">
                         <div class="form-group mx-sm-2">
                             <label for="email" class="email"><b>E-mail:</b></label>
                             <input type="text" id="email" name="email" >
@@ -32,8 +32,8 @@ DOCTYPE html>
                             <input type="password" id="password" name="password">
                         </div>
                         <div class="form-group row mx-sm-3">
-                            <label for="clase_usuario"><b>Clase de Usuario</b></label>
-                            <select class="form-select" name="clase_usuario">
+                            <label for="user_type"><b>Clase de Usuario</b></label>
+                            <select class="form-select" name="user_type" id="user_type">
                                 <option value=""></option>
                                 <option value="Cultivador">Cultivador</option>
                                 <option value="Comprador">Comprador</option>
@@ -61,6 +61,6 @@ DOCTYPE html>
             </div>       
         </div>
     </main>
+    <script src="{{url_for('static',filename='js/login.js')}}"></script>
 </body>
 </html>
-
