@@ -20,7 +20,7 @@ h4, h2 {
     color: rgb(44, 82, 44);
 }
 
-.salida {
+.salida, .perfil {
     height: 25px;
     margin-right: 10px;
 }
@@ -52,4 +52,15 @@ label, h4 {
     display: flex;
     align-items: center;
     margin-top: 20px;
+}
+
+#boton {
+    background-color: #33a48a;
+    color:white;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    box-shadow: 2px 2px black;
+    margin-right: 20px;
 }
