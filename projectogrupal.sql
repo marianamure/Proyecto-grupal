@@ -21,7 +21,7 @@ CREATE TABLE IF NOT EXISTS `weedproject`.`buyers` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `full_name` VARCHAR(255) NULL,
   `n_identification` VARCHAR(150) NULL,
-  `emai` VARCHAR(150) NULL,
+  `email` VARCHAR(150) NULL,
   `address` VARCHAR(150) NULL,
   `password` VARCHAR(150) NULL,
   `type_buyer` VARCHAR(45) NULL,
@@ -56,7 +56,7 @@ CREATE TABLE IF NOT EXISTS `weedproject`.`crops` (
   `fertilizer` VARCHAR(150) NULL,
   `f_amount` VARCHAR(45) NULL,
   `date` DATE NULL,
-  `disease` VARCHAR(150) NULL,
+  `Disease` VARCHAR(150) NULL,
   `product` VARCHAR(45) NULL,
   `description` TEXT NULL,
   `image` VARCHAR(255) NULL,
@@ -84,7 +84,6 @@ CREATE TABLE IF NOT EXISTS `weedproject`.`products` (
   `p_sale` TEXT NULL,
   `presentation` VARCHAR(255) NULL,
   `price` VARCHAR(45) NULL,
-  `image` VARCHAR(255) NULL,
   `created_at` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` DATETIME NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `cultivators_id` INT NOT NULL,
@@ -102,7 +101,7 @@ ENGINE = InnoDB;
 -- Table `weedproject`.`comments`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `weedproject`.`comments` (
-  `id` INT NOT NULL AUTO_INCREMENT,
+  `id` INT NOT NULL,
   `comment` TEXT NULL,
   `created_at` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` DATETIME NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
@@ -128,7 +127,7 @@ ENGINE = InnoDB;
 -- Table `weedproject`.`shopping`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `weedproject`.`shopping` (
-  `id` INT NOT NULL AUTO_INCREMENT,
+  `id` INT NOT NULL,
   `name_bank` VARCHAR(150) NULL,
   `address` VARCHAR(150) NULL,
   `home_delivery` TINYINT NULL,
@@ -151,7 +150,6 @@ ENGINE = InnoDB;
 -- Table `weedproject`.`shopping_cart`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `weedproject`.`shopping_cart` (
-  `id` INT NOT NULL AUTO_INCREMENT,
   `product_id` INT NOT NULL,
   `shopping_id` INT NOT NULL,
   `amount` INT NULL,
