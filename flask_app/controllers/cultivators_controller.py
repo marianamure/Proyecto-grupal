@@ -38,18 +38,18 @@ def registracultivador():
     #request.form = FORMULARIO HTML
     id = Cultivator.save(formulario) #Recibo el identificador de mi nuevo usuario
 
-    session['user_id'] = id #Se guarda en sesion el id de usuario.
+    session['cultivator_id'] = id #Se guarda en sesion el id de usuario.
 
     return jsonify(message="Correcto") #Se retorna
 
 @app.route('/perfil_cultivador')
 def vistaperfil():
 
-    if 'user_id' not in session:
+    if 'cultivator_id' not in session:
         return redirect('/')
 
     formulario = {
-        'id': session['user_id']
+        'id': session['cultivator_id']
     }
 
     cultivator = Cultivator.get_by_id(formulario)

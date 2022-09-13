@@ -35,7 +35,7 @@ def login():
             #flash('Password incorrecto', 'login')
             #return redirect('/')
 
-        session['user_id'] = comprador.id
+        session['comprador_id'] = comprador.id
         return jsonify(message="Correcto1")
     
     else:
@@ -54,7 +54,7 @@ def login():
                 #flash('Password incorrecto', 'login')
                 #return redirect('/')
 
-            session['user_id'] = cultivator.id
+            session['cultivator_id'] = cultivator.id
             return jsonify(message="Correcto")
 
 

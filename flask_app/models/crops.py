@@ -71,7 +71,7 @@ class Crop:
 
     @classmethod
     def save(cls, formulario):
-        query = "INSERT INTO weedproject.crops (farm, state, municipality, fertilizer, f_amount, date, disease, production, description, image, share, cultivators_id) VALUES (%(farm)s, %(state)s, %(municipality)s, %(fertilizer)s,%(f_amount)s, %(date)s, %(disease)s, %(production)s, %(description)s, %(image)s, %(share)s, %(cultivators_id)s)"
+        query = "INSERT INTO crops (farm, state, municipality, fertilizer, f_amount, date, disease, production, description, image, share, cultivators_id) VALUES (%(farm)s, %(state)s, %(municipality)s, %(fertilizer)s,%(f_amount)s, %(date)s, %(disease)s, %(production)s, %(description)s, %(image)s, %(share)s, %(cultivators_id)s)"
         result = connectToMySQL('weedproject').query_db(query, formulario)
         return result
 

@@ -43,17 +43,18 @@ def crear_dato():
     
     formulario = {
         'farm' : request.form['farm'],
-        'estate' : request.form['estate'],
+        'state' : request.form['state'],
         'municipality' : request.form['municipality'],
         'fertilizer' : request.form['fertilizer'],
         'f_amount' : request.form['f_amount'],
         'date' : request.form['date'],
-        'product' : request.form['product'],
+        'disease' : request.form['disease'],
+        'production' : request.form['production'],
         'description' : request.form['description'],
         'image' : name_image,
         'share' : request.form['share'],
         'cultivators_id' : request.form['cultivators_id'],
     }
-    Crop.save(formulario)
+    crop = Crop.save(formulario)
 
-    return redirect('/mi_perfil_cultivador')
+    return redirect('/mi_perfil_cultivador', crop = crop)

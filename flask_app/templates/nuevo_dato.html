@@ -17,7 +17,7 @@
         <div class="col-10">
             <header class="d-flex justify-content-between align-items-center" id="barra">
                 <img class="logo" src="../static/images/logo claro.png" alt="logo_claro"/>  
-                <h1>Bienvenid@ {{user.first_name}}</h1>   
+                <h1>Bienvenid@ {{cultivator.full_name}}</h1>   
                 <div class="button">
                     <a href="/mi_perfil" id="boton"><img src="../static/images/perfil.jpg" alt="perfil" class="perfil"/>Mi Perfil</a>
                     <a href="/logout" class="btn btn-danger"><img src="../static/images/salida.jpg" alt="salida" class="salida"/>Cerrar Sesión</a>
@@ -29,7 +29,7 @@
             <div class="col-10" id="database">
                 <div class="col-8">
 
-                    {% with messages = get_flashed_messages(category_filter=['publicacion']) %}
+                    {% with messages = get_flashed_messages(category_filter=['crop']) %}
                         {% if messages %}
                             <div class="alert alert-danger">
                                 {% for message in messages %}
@@ -39,7 +39,7 @@
                         {% endif %}
                     {% endwith %}
                     <form action="/nuevo_dato" method="post" enctype="multipart/form-data"> 
-                        <input type="hidden" value="{{user.id}}" name="user_id">
+                        <input type="hidden" value="{{cultivator.id}}" name="cultivators_id">
                         <div class="form-group row">
                             <label for="farm" class="col-sm-2 col-form-label"><b>Finca:</b></label>
                             <div class="col-sm-10">
@@ -123,11 +123,11 @@
                                 <h4>Deseas publicar en el muro?</h4>
                             </div>
                             <div>
-                                <input type="radio" name="share" value="Si">
+                                <input type="radio" name="share" value="1">
                                 <label for="shareSi">SI</label>
                             </div>
                             <div>
-                                <input type="radio" name="share" value="No">
+                                <input type="radio" name="share" value="0">
                                 <label for="shareNo">NO</label>
                             </div>
                         </div>
