@@ -35,7 +35,7 @@
                     <div class="card">
                         <div class="card-title">
                             
-                            <h3><b>Vendedor:</b> {{cultivators.full_name}}</h3>
+                            <h3><b>Vendedor:</b> {{cultivator.full_name}}</h3>
                         </div>
                         
                         <div class="card-body">
@@ -44,10 +44,10 @@
                                     {% for product in products %}
                                         <div class="col">
                                             <img class="foto" src="{{ url_for('static', filename='images/'+publicaciones.imagen ) }}" alt="foto" />
-                                            <div>{{products.name}}</div>
-                                            <div>{{products.descripcion}}</div>
-                                            <div>{{products.presentation}}</div>
-                                            <div>{{products.price}}</div>
+                                            <div>{{product.name}}</div>
+                                            <div>{{product.descripcion}}</div>
+                                            <div>{{product.presentation}}</div>
+                                            <div>{{product.price}}</div>
                                             <a href="/comprar" class="btn btn-success"><img src="../static/images/Carrito compras.png" alt="comprar" class="comprar"/>Comprar</a>
                                         </div>
                                         <br>
