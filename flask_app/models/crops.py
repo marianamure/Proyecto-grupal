@@ -6,7 +6,7 @@ class Crop:
         
         self.id = data['id']
         self.farm = data['farm']
-        self.estate = data['state']
+        self.state = data['state']
         self.municipality = data['municipality']
         self.fertilizer = data['fertilizer']
         self.f_amount = data['f_amount']
@@ -20,7 +20,7 @@ class Crop:
         self.updated_at = data['updated_at']
         self.cultivators_id = data['cultivators_id']
 
-    @staticmethod
+    """@staticmethod
     def valida_crop(formulario):
         es_valido = True 
 
@@ -66,7 +66,7 @@ class Crop:
             errores.append('Debe seleccionar si desea compartir')
             es_valido = False
         
-        return (es_valido, errores)
+        return (es_valido, errores)"""
 
 
     @classmethod
@@ -88,31 +88,31 @@ class Crop:
 
     @classmethod
     def get_by_id(cls, formulario): 
-        query = "SELECT crops.*, first_name FROM publicaciones LEFT JOIN users ON users.id = publicaciones.user_id WHERE publicaciones.id = %(id)s"
-        result = connectToMySQL('agro').query_db(query, formulario) #Lista de diccionarios
+        query = "SELECT crops.*, farm FROM crops LEFT JOIN cultivators ON cultivators.id = crops.cultivators_id WHERE crops.id = %(id)s"
+        result = connectToMySQL('weedproject').query_db(query, formulario) #Lista de diccionarios
         publicacion = cls(result[0])
         return publicacion
 
     @classmethod
     def update(cls, formulario):
-        if(formulario['imagen'] != ''):
-            query = "UPDATE publicaciones SET estate=%(estate)s, municipality=%(municipality)s, fertilizer=%(fertilizer)s, f_amount=%(f_amount)s, date=%(date)s, disease=%(disease)s, product=%(product)s, description=%(description)s, image=%(image)s, share=%(share)s WHERE id = %(id)s"
+        if(formulario['image'] != ''):
+            query = "UPDATE crops SET farm=%(farm)s, state=%(state)s, municipality=%(municipality)s, fertilizer=%(fertilizer)s, f_amount=%(f_amount)s, date=%(date)s, disease=%(disease)s, production=%(production)s, description=%(description)s, image=%(image)s, share=%(share)s WHERE id = %(id)s"
         else:
-            query = "UPDATE publicaciones SET estate=%(estate)s, municipality=%(municipality)s, fertilizer=%(fertilizer)s, f_amount=%(f_amount)s, date=%(date)s, disease=%(disease)s, product=%(product)s, description=%(description)s, share=%(share)s WHERE id = %(id)s"
+            query = "UPDATE crops SET farm=%(farm)s, state=%(state)s, municipality=%(municipality)s, fertilizer=%(fertilizer)s, f_amount=%(f_amount)s, date=%(date)s, disease=%(disease)s, production=%(production)s, description=%(description)s, share=%(share)s WHERE id = %(id)s"
         result = connectToMySQL('weedproject').query_db(query, formulario)
         return result
 
     @classmethod
-    def eliminar(cls, formulario):
+    def delete(cls, formulario):
         query = "DELETE FROM crops WHERE id = %(id)s;"
         result = connectToMySQL('weedproject').query_db(query, formulario)
         return result
 
-    @classmethod
-    def eliminar2(cls, formulario):
+"""    @classmethod
+    def delete2(cls, formulario):
         query = "DELETE FROM comments WHERE id = %(id)s;"
         result = connectToMySQL('weedproject').query_db(query, formulario)
-        return result
+        return result"""
 
 """    @classmethod
     def get_all_muro(cls):

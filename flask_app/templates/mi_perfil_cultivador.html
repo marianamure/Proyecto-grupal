@@ -67,8 +67,8 @@
                                     {% endif %}
                                 </td>
                                 <td>
-                                    <a href="/editar/crop/{{crop.id}}" class="btn btn-secondary btn-sm " >Editar</a>
-                                    <a href="/eliminar/crop/{{crop.id}}" class="btn btn-danger btn-sm delete" data-confirm="Esta seguro de eliminar este elemento?">Borrar</a>
+                                    <a href="/update/crop/{{crop.id}}" class="btn btn-secondary btn-sm " >Editar</a>
+                                    <a href="/delete/crop/{{crop.id}}" class="btn btn-danger btn-sm delete" data-confirm="Esta seguro de eliminar este elemento?">Borrar</a>
                                 </td>
                             </tr>
                         {% endfor %}
@@ -104,7 +104,7 @@
                                 {% endif %}
                             </td>
                             <td>
-                                <a href="/editar/product/{{product.id}}" class="btn btn-secondary btn-sm " >Editar</a>
+                                <a href="//product/{{product.id}}" class="btn btn-secondary btn-sm " >Editar</a>
                                 <a href="/eliminar/product/{{product.id}}" class="btn btn-danger btn-sm delete" data-confirm="Esta seguro de eliminar este elemento?">Borrar</a>
                             </td>
                         </tr>
@@ -114,7 +114,7 @@
 
         </div>
     </div>
-    <script src="../static/js/tableToExcel.js" ></script>
+    <script src="../static/js/tableToExel.js" ></script>
     <script src="../static/js/app.js" ></script>
 </body>
 </html>
