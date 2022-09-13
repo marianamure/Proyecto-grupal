@@ -31,7 +31,7 @@
             <div style="overflow-x:auto;">
                 <input type="hidden" value="{{cultivator.id}}" name="cultivator_id">
                 <input type="hidden" value="{{crops.id}}" name="id">
-
+                
                 
                 <table class="table table-hover table-table border table table-sm" id="datoscultivo">
                     <thead class="table-light">
@@ -53,22 +53,22 @@
                         {% for crop in crops %}
                             <tr class="table align-middle">
                                 <td>{{crop.farm}}</td>
-                                <td>{{crop.estate}}</td>
+                                <td>{{crop.state}}</td>
                                 <td>{{crop.municipality}}</td>
                                 <td>{{crop.fertilizer}}</td>
                                 <td>{{crop.f_amount}}</td>
                                 <td>{{crop.date}}</td>
                                 <td>{{crop.disease}}</td>
-                                <td>{{crop.product}}</td>
-                                <td>{{crop.descripcion}}</td>
+                                <td>{{crop.production}}</td>
+                                <td>{{crop.description}}</td>
                                 <td>
                                     {% if crop.image != None %}
                                     <a href="{{url_for('static', filename='images/'+crop.image)}}" download><br>Descargar</a>
                                     {% endif %}
                                 </td>
                                 <td>
-                                    <a href="/editar/crop/{{crop.id}}" class="btn btn-secondary btn-sm " >Editar</a>
-                                    <a href="/eliminar/crop/{{crop.id}}" class="btn btn-danger btn-sm delete" data-confirm="Esta seguro de eliminar este elemento?">Borrar</a>
+                                    <a href="/update/crop/{{crop.id}}" class="btn btn-secondary btn-sm " >Editar</a>
+                                    <a href="/delete/crop/{{crop.id}}" class="btn btn-danger btn-sm delete" data-confirm="Esta seguro de eliminar este elemento?">Borrar</a>
                                 </td>
                             </tr>
                         {% endfor %}
@@ -77,10 +77,45 @@
             </div>
             <br>
             <h2>Portafolio de productos</h2>
+            <a href="/nuevo_producto" class="btn btn-secondary"><img src="../static/images/canabis.jpg" alt="canabis" class="cannabis">Ingresar producto</a>
+
+            <table class="table table-hover table-table border table table-sm" id="datosproductos">
+                <thead class="table-light">
+                    <tr class="table align-middle" id="enc">
+                        <th>Producto</th>
+                        <th>Descripcion</th>
+                        <th>Punto de Venta</th>
+                        <th>Presentacion</th>
+                        <th>Precio</th>
+                        <th>Foto</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for product in products %}
+                        <tr  class="table align-middle">
+                            <td>{{product.name}}</td>
+                            <td>{{product.description}}</td>
+                            <td>{{product.p_sale}}</td>
+                            <td>{{product.presentation}}</td>
+                            <td>{{product.price}}</td>
+                            <td>
+                                {% if product.image != None %}
+                                <a href="{{url_for('static', filename='images/'+product.image)}}" download><br>Descargar</a>
+                                {% endif %}
+                            </td>
+                            <td>
+                                <a href="/update/product/{{product.id}}" class="btn btn-secondary btn-sm " >Editar</a>
+                                <a href="/eliminar/product/{{product.id}}" class="btn btn-danger btn-sm delete" data-confirm="Esta seguro de eliminar este elemento?">Borrar</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
 
         </div>
     </div>
-    <script src="../static/js/tableToExcel.js" ></script>
+    <script src="../static/js/tableToExel.js" ></script>
     <script src="../static/js/app.js" ></script>
 </body>
 </html>

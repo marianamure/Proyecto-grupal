@@ -4,11 +4,12 @@ from flask_app import app
 
 from flask_app.models.cultivators import Cultivator
 from flask_app.models.crops import Crop
+from flask_app.models.products import Product
 from werkzeug.utils import secure_filename
 import os
 
-@app.route('/nuevo_dato')
-def nuevo_dato():
+@app.route('/nuevo_producto')
+def nuevo_producto():
     if 'cultivator_id' not in session:
         return redirect('/')
 
@@ -18,10 +19,10 @@ def nuevo_dato():
 
     cultivator = Cultivator.get_by_id(formulario) #Usuario que inicio sesión
 
-    return render_template('nuevo_dato.html', cultivator=cultivator)
+    return render_template('nuevo_producto.html', cultivator=cultivator)
 
-@app.route('/crear_dato', methods=['POST'])
-def crear_dato():
+@app.route('/crear_producto', methods=['POST'])
+def crear_producto():
 #    if 'cultivador_id' not in session: 
 #        return redirect('/')
 
@@ -29,37 +30,32 @@ def crear_dato():
 #        return redirect('/nuevo_dato')
 
     if 'image' not in request.files:
-        flash('Imagen no encontrada', 'crop')
-        return redirect('/nuevo_dato')
+        flash('Imagen no encontrada', 'product')
+        return redirect('/nuevo_producto')
 
     image = request.files['image']
 
     if image.filename == "":
-        flash ('Nombre de imagen vacía', 'crop')
-        return redirect ('/nuevo_dato')
+        flash ('Nombre de imagen vacía', 'product')
+        return redirect ('/nuevo_producto')
 
     name_image = secure_filename(image.filename) 
     image.save(os.path.join(app.config ['UPLOAD_FOLDER'],name_image)) 
     
     formulario = {
-        'farm' : request.form['farm'],
-        'state' : request.form['state'],
-        'municipality' : request.form['municipality'],
-        'fertilizer' : request.form['fertilizer'],
-        'f_amount' : request.form['f_amount'],
-        'date' : request.form['date'],
-        'disease' : request.form['disease'],
-        'production' : request.form['production'],
+        'name' : request.form['name'],
         'description' : request.form['description'],
+        'p_sale' : request.form['p_sale'],
+        'presentation' : request.form['presentation'],
+        'price' : request.form['price'],
         'image' : name_image,
-        'share' : request.form['share'],
         'cultivators_id' : request.form['cultivators_id'],
     }
-    Crop.save(formulario)
+    Product.save(formulario)
 
     return redirect('/perfil_cultivador')
 
-@app.route('/update/crop/<int:id>') 
+"""@app.route('/update/crop/<int:id>') 
 def update_crop(id):
 #    if 'cultivator_id' not in session: 
 #        return redirect('/')
@@ -120,4 +116,4 @@ def delete_crop(id):
     Crop.delete(formulario)
 #    Crop.delete2(formulario)
     
-    return redirect('/perfil_cultivador')
+    return redirect('/perfil_cultivador')"""

@@ -4,91 +4,145 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edita datos cultivo</title>
+    <title>Datos del cultivo</title>
+    <link rel="shortcut icon" href="../static/images/logo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Lexend&display=swap" rel="stylesheet"> 
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{url_for('static', filename='editadatos.css')}}">
+    <link href="https://fonts.googleapis.com/css2?family=Signika+Negative&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/css/edita_dato.css">
 </head>
 <body>
     <div class="container">
-        <header class="d-flex justify-content-end col-9">
-            <img src="../static/images/cannapp2.png" alt="cannapp_logo2" />
-            <div class="button">
-                <a href="/mi_perfil_cultivador" class="btn btn-primary">Mi Perfil</a>
-                <a href="/logout" class="btn btn-danger">Cerrar Sesión</a>
+        <div class="col-10">
+            <header class="d-flex justify-content-between align-items-center" id="barra">
+                <img class="logo" src="../static/images/logo claro.png" alt="logo_claro"/>  
+                <h1>Bienvenid@ {{cultivator.full_name}}</h1>   
+                <div class="button">
+                    <a href="/mi_perfil" id="boton"><img src="../static/images/perfil.jpg" alt="perfil" class="perfil"/>Mi Perfil</a>
+                    <a href="/logout" class="btn btn-danger"><img src="../static/images/salida.jpg" alt="salida" class="salida"/>Cerrar Sesión</a>
+                </div>
+            </header>
         </div>
-        </header>
-        <div class="row">
-            <div class="col-9"id="database">
-                <h2>Edita los datos de tu cultivo</h2>
-                {% with messages = get_flashed_messages(category_filter=['publicacion']) %}
-                    {% if messages %}
-                        <div class="alert alert-danger">
-                            {% for message in messages %}
-                                <p>{{message}}</p>
-                            {% endfor %}
+        <h2>Edita los datos de tu cultivo</h2>
+        <div class="row" id="form">
+            <div class="col-10" id="database">
+                <div class="col-8">
+
+                    {% with messages = get_flashed_messages(category_filter=['publicacion']) %}
+                        {% if messages %}
+                            <div class="alert alert-danger">
+                                {% for message in messages %}
+                                    <p>{{message}}</p>
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+                    {% endwith %}
+                    <form action="/update/data" method="post" enctype="multipart/form-data"> 
+                        <input type="hidden" value="{{crop.id}}" name="id">
+                        <div class="form-group row">
+                            <label for="farm" class="col-sm-2 col-form-label"><b>Finca:</b></label>
+                            <div class="col-sm-10">
+                                <input type="text" id="farm" name="farm" class="form-control" value="{{crop.farm}}">
+                            </div>
                         </div>
-                    {% endif %}
-                {% endwith %}
-                <form action="/edita_dato" method="post" enctype="multipart/form-data" > 
-                    <input type="hidden" value="{{user.id}}" name="user_id">
-                    <input type="hidden" value="{{publicacion.id}}" name="id">
-                    <div class="form-group">
-                        <label for="finca"><b>Finca:</b></label>
-                        <input type="text" id="finca" name="finca" class="form-control" value="{{publicacion.finca}}">
-                    </div>
-                    <br>
-                    <div class="form-group">
-                        <label for="municipio"><b>Municipio:</b></label>
-                        <input type="text" id="municipio" name="municipio" class="form-control" value="{{publicacion.municipio}}">
-                    </div>
-                    <br>
-                    <div class="form-group">
-                        <label for="nombre_fertilizante"><b>Nombre del fertilizante:</b></label>
-                        <input type="text" id="nombre_fertilizante" name="nombre_fertilizante" class="form-control" value="{{publicacion.nombre_fertilizante}}">
-                    </div>
-                    <br>
-                    <div class="form-group">
-                        <label for="cantidad_fertilizante"><b>Cantidad de fertilizante aplicado (kg/ha):</b></label>
-                        <input type="text" id="cantidad_fertilizante" name="cantidad_fertilizante" class="form-control" value="{{publicacion.cantidad_fertilizante}}">
-                    </div>
-                    <br>
-                    <div class="form-group">
-                        <label for="fecha_cosecha"><b>Fecha de la cosecha:</b></label>
-                        <input type="date" id="fecha_cosecha" name="fecha_cosecha" class="form-control" value="{{publicacion.fecha_cosecha}}">
-                    </div>
-                    <br>
-                    <div class="form-group">
-                        <label for="enfermedades"><b>Enfermedades:</b></label>
-                        <select class="form-control form-select" name="enfermedades" id="enfermedades" value="{{publicacion.enfermedades}}">
-                            <option value=""></option>
-                            <option value="deficiencia">Ninguna</option>
-                            <option value="infecciosa">Infecciosa</option>
-                            <option value="deficiencia">Deficiencia</option>
-                        </select>
-                    </div>
-                    <br>
-                    <div class="form-group">
-                        <label for="produccion"><b>Produccion (kg/ha):</b></label>
-                        <input type="text" id="produccion" name="produccion" class="form-control" value="{{publicacion.produccion}}">
-                    </div>
-                    <br>
-                    <div class="form-group">
-                        <label for="descripcion"><b>Descripcion:</b></label>
-                        <textarea id="descripcion" name="descripcion" class="form-control" value="{{publicacion.descripcion}}"></textarea>
-                    </div>
-                    <br>
-                    <div class="form-group">
-                        <label for="imagen"><b>Imagen:</b></label>
-                        <input type="file" id="imagen" name="imagen" class="form-control" value="{{publicacion.imagen}}">
-                    </div>
-                    <br>
-                    <div>
-                        <input type="submit" value="Enviar" class="btn btn-secondary btn-lg">
-                    </div>
-                </form>
+                        <br>
+                        <div class="form-group row">
+                            <label for="state" class="col-sm-2 col-form-label"><b>Departamento:</b></label>
+                            <div class="col-sm-10">
+                                <input type="text" id="state" name="state" class="form-control"
+                                value="{{crop.state}}">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="form-group row">
+                            <label for="municipality" class="col-sm-2 col-form-label"><b>Municipio:</b></label>
+                            <div class="col-sm-10">
+                                <input type="text" id="municipality" name="municipality" class="form-control"
+                                value="{{crop.municipality}}">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="form-group row">
+                            <label for="fertilizer" class="col-sm-4 col-form-label"><b>Nombre del fertilizante:</b></label>
+                            <div class="col-sm-8">
+                                <input type="text" id="fertilizer" name="fertilizer" class="form-control"
+                                value="{{crop.fertilizer}}">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="form-group row">
+                            <label for="f_amount" class="col-sm-5 col-form-label"><b>Cantidad de fertilizante aplicado (kg/ha):</b></label>
+                            <div class="col-sm-7">
+                                <input type="text" id="f_amount" name="f_amount" class="form-control"
+                                value="{{crop.f_amount}}">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="form-group row">
+                            <label for="date" class="col-sm-3 col-form-label"><b>Fecha de la cosecha:</b></label>
+                            <div class="col-sm-9">
+                                <input type="date" id="date" name="date" class="form-control" value="{{crop.date}}">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="form-group row">
+                            <label for="disease" class="col-sm-3 col-form-label"><b>Enfermedades:</b></label>
+                            <div class="col-sm-9">
+                                <select class="form-control form-select" name="disease" id="disease" >
+                                    <option value="{{crop.disease}}">{{crop.disease}}</option>
+                                    {% if crop.disease != "Ninguna" %}
+                                    <option value="ninguna">Ninguna</option>
+                                    {% endif %}
+                                    {% if crop.disease != "Infecciosa" %}
+                                    <option value="infecciosa">Infecciosa</option>
+                                    {% endif %}
+                                    {% if crop.disease != "Deficiencia" %}
+                                    <option value="deficiencia">Deficiencia</option>
+                                    {% endif %}
+                                </select>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="form-group row">
+                            <label for="production" class="col-sm-3 col-form-label"><b>Produccion (kg/ha):</b></label>
+                            <div class="col-sm-9">
+                                <input type="text" id="production" name="production" class="form-control" value="{{crop.production}}">
+                            </div>
+                        </div>
+                        <br>
+                        <div class="form-group row">
+                            <label for="description" class="col-sm-2 col-form-label"><b>Descripcion:</b></label>
+                            <div class="col-sm-10">
+                                <textarea id="description" name="description" class="form-control">{{crop.description}}"</textarea>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="form-group row">
+                            <label for="image" class="col-sm-2 col-form-label"><b>Imagen:</b></label>
+                            <div class="col-sm-10">
+                                <input type="file" id="image" name="image" class="form-control" >
+                        </div>
+                        <br>
+                        <div class="muro">
+                            <div>
+                                <label><h4>¿Deseas publicar en el muro?</h4></label>
+                            </div>
+                            <div>
+                                <input type="radio" name="share" id="shareSi" value="1" {% if crop.share == 1 %} checked {% endif %}>
+                                <label for="shareSi">SI</label>
+                            </div>
+                            <div>
+                                <input type="radio" name="share" id="shareNo" value="0" {% if crop.share == 0 %} checked {% endif %}>
+                                <label for="shareNo">NO</label>
+                            </div>
+                        </div>
+                        <div class="d-grip gap-2 d-md-flex justify-content-md-center">
+                            <input type="submit" value="Enviar" class="btn btn-light d-flex justify-content-between align-items-center ">
+                        </div>
+                        
+                    </form>
+                </div>
             </div>
         </div>
     </div>

@@ -1,21 +1,15 @@
 from flask_app.config.mysqlconnection import  connectToMySQL
 
-class Crop:
+class Product:
 
     def __init__(self, data):
-        
         self.id = data['id']
-        self.farm = data['farm']
-        self.state = data['state']
-        self.municipality = data['municipality']
-        self.fertilizer = data['fertilizer']
-        self.f_amount = data['f_amount']
-        self.date = data['date']
-        self.disease = data['disease']
-        self.production = data['production']
-        self.description = data ['description']
+        self.name = data['name']
+        self.description = data['description']
+        self.p_sale = data['p_sale']
+        self.presentation = data['presentation']
+        self.price = data['price']
         self.image = data ['image']
-        self.share = data ['share']
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
         self.cultivators_id = data['cultivators_id']
@@ -71,7 +65,7 @@ class Crop:
 
     @classmethod
     def save(cls, formulario):
-        query = "INSERT INTO crops (farm, state, municipality, fertilizer, f_amount, date, disease, production, description, image, share, cultivators_id) VALUES (%(farm)s, %(state)s, %(municipality)s, %(fertilizer)s,%(f_amount)s, %(date)s, %(disease)s, %(production)s, %(description)s, %(image)s, %(share)s, %(cultivators_id)s)"
+        query = "INSERT INTO products (name, description, p_sale, presentation, price, image, cultivators_id) VALUES (%(name)s, %(description)s, %(p_sale)s, %(presentation)s,%(price)s, %(image)s, %(cultivators_id)s)"
         result = connectToMySQL('weedproject').query_db(query, formulario)
         return result
 
@@ -107,20 +101,3 @@ class Crop:
         query = "DELETE FROM crops WHERE id = %(id)s;"
         result = connectToMySQL('weedproject').query_db(query, formulario)
         return result
-
-"""    @classmethod
-    def delete2(cls, formulario):
-        query = "DELETE FROM comments WHERE id = %(id)s;"
-        result = connectToMySQL('weedproject').query_db(query, formulario)
-        return result"""
-
-"""    @classmethod
-    def get_all_muro(cls):
-        query = "SELECT publicaciones.*, users.first_name FROM publicaciones LEFT JOIN users ON users.id = publicaciones.user_id;"
-        results = connectToMySQL('agro').query_db(query) 
-        publicaciones = []
-        for publicacion in results:
-            
-            publicaciones.append(cls(publicacion)) 
-
-        return publicaciones"""

@@ -17,9 +17,9 @@
         <div class="col-10">
             <header class="d-flex justify-content-between align-items-center" id="barra">
                 <img class="logo" src="../static/images/logo claro.png" alt="logo_claro"/>  
-                <h1>Bienvenid@ {{user.first_name}}</h1>   
+                <h1>Bienvenid@ {{cultivator.full_name}}</h1>   
                 <div class="button">
-                    <a href="/mi_perfil" id="boton"><img src="../static/images/perfil.jpg" alt="perfil" class="perfil"/>Mi Perfil</a>
+                    <a href="/perfil_cultivador" id="boton"><img src="../static/images/perfil.jpg" alt="perfil" class="perfil"/>Mi Perfil</a>
                     <a href="/logout" class="btn btn-danger"><img src="../static/images/salida.jpg" alt="salida" class="salida"/>Cerrar Sesión</a>
                 </div>
             </header>
@@ -40,48 +40,48 @@
                             </div>
                         {% endif %}
                     {% endwith %}
-                    <form action="/nuevo_producto" method="post" enctype="multipart/form-data"> 
-                        <input type="hidden" value="{{user.id}}" name="user_id">
+                    <form action="/crear_producto" method="post" enctype="multipart/form-data"> 
+                        <input type="hidden" value="{{cultivator.id}}" name="cultivators_id">
                         
                         <div class="form-group row">
-                            <label for="producto" class="col-sm-2 col-form-label"><b>Producto:</b></label>
+                            <label for="product" class="col-sm-2 col-form-label"><b>Producto:</b></label>
                             <div class="col-sm-10">
-                                <input type="text" id="producto" name="producto" class="form-control" placeholder="Ingresa el nombre de tu producto">
+                                <input type="text" id="product" name="name" class="form-control" placeholder="Ingresa el nombre de tu producto">
                             </div>
                         </div>
                         <br>
                         <div class="form-group row">
-                            <label for="descripcion" class="col-sm-2 col-form-label"><b>Descripcion:</b></label>
+                            <label for="description" class="col-sm-2 col-form-label"><b>Descripcion:</b></label>
                             <div class="col-sm-10">
-                                <input type="text" id="descripcion" name="descripcion" class="form-control" placeholder="Ingresuna breve descripción de tu producto">
+                                <input type="text" id="description" name="description" class="form-control" placeholder="Ingresuna breve descripción de tu producto">
                             </div>
                         </div>
                         <br>
                         <div class="form-group row">
-                            <label for="punto_venta" class="col-sm-3 col-form-label"><b>Punto de venta:</b></label>
+                            <label for="p_sale" class="col-sm-3 col-form-label"><b>Punto de venta:</b></label>
                             <div class="col-sm-9">
-                                <input type="text" id="punto_venta" name="punto_venta" class="form-control" placeholder="Indica donde está ubicado tu punto de venta">
+                                <input type="text" id="p_sale" name="p_sale" class="form-control" placeholder="Indica donde está ubicado tu punto de venta">
                             </div>
                         </div>
                         <br>
                         <div class="form-group row">
-                            <label for="presentacion" class="col-sm-2 col-form-label"><b>Presentacion:</b></label>
+                            <label for="presentation" class="col-sm-2 col-form-label"><b>Presentacion:</b></label>
                             <div class="col-sm-10">
-                                <input type="text" id="presentacion" name="presentacion" class="form-control" placeholder="Indica la presentación de tu producto">
+                                <input type="text" id="presentation" name="presentation" class="form-control" placeholder="Indica la presentación de tu producto">
                             </div>
                         </div>
                         <br>
                         <div class="form-group row">
-                            <label for="precio" class="col-sm-2 col-form-label"><b>Precio:</b></label>
+                            <label for="price" class="col-sm-2 col-form-label"><b>Precio:</b></label>
                             <div class="col-sm-10">
-                                <input type="text" id="precio" name="precio" class="form-control" placeholder="Indica el precio de tu producto">
+                                <input type="text" id="price" name="price" class="form-control" placeholder="Indica el precio de tu producto">
                             </div>
                         </div>
                         <br>
                         <div class="form-group row">
-                            <label for="foto" class="col-sm-2 col-form-label"><b>Foto:</b></label>
+                            <label for="image" class="col-sm-2 col-form-label"><b>Foto:</b></label>
                             <div class="col-sm-10">
-                                <input type="file" id="foto" name="foto" class="form-control">
+                                <input type="file" id="image" name="image" class="form-control">
                             </div>
                         </div>
                         <br>

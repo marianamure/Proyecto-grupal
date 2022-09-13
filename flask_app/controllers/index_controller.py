@@ -22,7 +22,7 @@ def index():
 def login():
 
     if request.form['user_type'] == 'Comprador':
-
+        print("buscando comprador")
         comprador = Buyer.get_by_email(request.form)
         if not comprador:
             #flash('E-mail no encontrado', 'login')
@@ -35,14 +35,14 @@ def login():
             #flash('Password incorrecto', 'login')
             #return redirect('/')
 
-        session['user_id'] = comprador.id
+        session['comprador_id'] = comprador.id
         return jsonify(message="Correcto1")
     
     else:
         
         if request.form['user_type'] == 'Cultivador':
             cultivator = Cultivator.get_by_email(request.form) #Recibiendo una instancia de usuario o Falso
-
+            print("buscando cultivador")
             if not cultivator:
                 #flash('E-mail no encontrado', 'login')
                 #return redirect('/')
@@ -54,7 +54,7 @@ def login():
                 #flash('Password incorrecto', 'login')
                 #return redirect('/')
 
-            session['user_id'] = cultivator.id
+            session['cultivator_id'] = cultivator.id
             return jsonify(message="Correcto")
 
 
