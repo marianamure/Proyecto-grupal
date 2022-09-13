@@ -17,7 +17,7 @@
         <div class="col-12">
             <header class="d-flex justify-content-between align-items-center" id="barra">
                 <img class="logo" src="../static/images/logo claro.png" alt="logo_claro"/>
-                <h1>Bienvenid@ {{user.first_name}}</h1>
+                <h1>Bienvenid@ {{cultivator.full_name}}</h1>
                 
                 <a href="/muro_cultivador" class="btn btn-warning"><img src="../static/images/muro.jpg" alt="muro" class="muro"/>Muro</a>
                 <a href="/logout" class="btn btn-danger"><img src="../static/images/salida.jpg" alt="salida" class="salida"/>Cerrar Sesión</a>
@@ -29,10 +29,15 @@
             <button class="btn btn-success" id="btn" onclick="exportTableToExcel('datoscultivo', 'Reporte cultivo')"><img src="../static/images/export-excel.png" alt="excel" class="excel"/> Exportar a Excel</button>
             <br>
             <div style="overflow-x:auto;">
+                <input type="hidden" value="{{cultivator.id}}" name="cultivator_id">
+                <input type="hidden" value="{{crops.id}}" name="id">
+
+                
                 <table class="table table-hover table-table border table table-sm" id="datoscultivo">
                     <thead class="table-light">
                         <tr class="table align-middle" id="hide">
                             <th>Finca</th>
+                            <th>Departamento</th>
                             <th>Municipio</th>
                             <th>Nombre del Fertilizante</th>
                             <th>Cantidad de fertilizante aplicado</th>
@@ -42,28 +47,28 @@
                             <th>Descripcion</th>
                             <th>Imagen</th>
                             <th>Acciones</th>
-                            
                         </tr>
                     </thead>
                     <tbody>
-                        {% for publicacion in publicaciones %}
+                        {% for crop in crops %}
                             <tr class="table align-middle">
-                                <td>{{.finca}}</td>
-                                <td>{{.municipio}}</td>
-                                <td>{{.nombre_fertilizante}}</td>
-                                <td>{{.cantidad_fertilizante}}</td>
-                                <td>{{.fecha_cosecha}}</td>
-                                <td>{{.enfermedades}}</td>
-                                <td>{{.produccion}}</td>
-                                <td>{{.descripcion}}</td>
+                                <td>{{crop.farm}}</td>
+                                <td>{{crop.estate}}</td>
+                                <td>{{crop.municipality}}</td>
+                                <td>{{crop.fertilizer}}</td>
+                                <td>{{crop.f_amount}}</td>
+                                <td>{{crop.date}}</td>
+                                <td>{{crop.disease}}</td>
+                                <td>{{crop.product}}</td>
+                                <td>{{crop.descripcion}}</td>
                                 <td>
-                                    {% if publicacion.imagen != None %}
-                                    <a href="{{url_for('static', filename='images/'+publicacion.imagen)}}" download><br>Descargar</a>
+                                    {% if crop.image != None %}
+                                    <a href="{{url_for('static', filename='images/'+crop.image)}}" download><br>Descargar</a>
                                     {% endif %}
                                 </td>
                                 <td>
-                                    <a href="/editar/publicacion/{{publicacion.id}}" class="btn btn-secondary btn-sm " >Editar</a>
-                                    <a href="/eliminar/publicacion/{{publicacion.id}}" class="btn btn-danger btn-sm delete" data-confirm="Esta seguro de eliminar este elemento?">Borrar</a>
+                                    <a href="/editar/crop/{{crop.id}}" class="btn btn-secondary btn-sm " >Editar</a>
+                                    <a href="/eliminar/crop/{{crop.id}}" class="btn btn-danger btn-sm delete" data-confirm="Esta seguro de eliminar este elemento?">Borrar</a>
                                 </td>
                             </tr>
                         {% endfor %}
@@ -72,41 +77,7 @@
             </div>
             <br>
             <h2>Portafolio de productos</h2>
-            <a href="/nuevo_producto" class="btn btn-secondary"><img src="../static/images/canabis.jpg" alt="ing" class="ing"/>Ingresar producto</a>
-            <table class="table table-hover table-table border table table-sm" id="datoscultivo">
-                <thead class="table-light">
-                    <tr class="table align-middle" id="enc">
-                        <th>Producto</th>
-                        <th>Descripcion</th>
-                        <th>Punto de Venta</th>
-                        <th>Foto</th>
-                        <th>Presentacion</th>
-                        <th>Precio</th>
-                        <th>Acciones</th>
-                    </tr>
-                </thead>
-                
-                <tbody>
-                    {% for publicacion in publicaciones %}
-                        <tr class="table align-middle" >
-                            <td>{{.producto}}</td>
-                            <td>{{.descripcion}}</td>
-                            <td>{{.punto_venta}}</td>
-                            <td>
-                                {% if publicacion.imagen != None %}
-                                <a href="{{url_for('static', filename='images/'+publicacion.imagen)}}" download><br>Descargar</a>
-                                {% endif %}
-                            </td>
-                            <td>{{.presentacion}}</td>
-                            <td>{{.precio}}</td>
-                            <td>
-                                <a href="/editar/publicacion/{{publicacion.id}}" class="btn btn-secondary btn-sm " >Editar</a>
-                                <a href="/eliminar/publicacion/{{publicacion.id}}" class="btn btn-danger btn-sm delete" data-confirm="Esta seguro de eliminar este elemento?">Borrar</a>
-                            </td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+
         </div>
     </div>
     <script src="../static/js/tableToExcel.js" ></script>

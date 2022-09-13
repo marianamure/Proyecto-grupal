@@ -5,6 +5,7 @@ from flask_app import app
 #Importación del modelo
 from flask_app.models.buyers import Buyer
 from flask_app.models.cultivators import Cultivator
+from flask_app.models.crops import Crop
 
 #Importación BCrypt
 from flask_bcrypt import Bcrypt
@@ -51,7 +52,11 @@ def vistaperfil():
         'id': session['user_id']
     }
 
-    cultivador = Cultivator.get_by_id(formulario)
+    cultivator = Cultivator.get_by_id(formulario)
 
-    return render_template('mi_perfil_cultivador.html')
+    crops = Crop.get_all(formulario)
+
+    return render_template('mi_perfil_cultivador.html', cultivator = cultivator, crops = crops)
+
+
 

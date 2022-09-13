@@ -2,7 +2,7 @@
 from flask_app import app
 
 #Importando mi controlador
-from flask_app.controllers import users_controller, publicaciones_controller, comentarios_controller
+from flask_app.controllers import index_controller, cultivators_controller, crops_controller, buyers_controller
 
 
 
