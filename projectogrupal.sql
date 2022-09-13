@@ -56,7 +56,7 @@ CREATE TABLE IF NOT EXISTS `weedproject`.`crops` (
   `fertilizer` VARCHAR(150) NULL,
   `f_amount` VARCHAR(45) NULL,
   `date` DATE NULL,
-  `Disease` VARCHAR(150) NULL,
+  `disease` VARCHAR(150) NULL,
   `product` VARCHAR(45) NULL,
   `description` TEXT NULL,
   `image` VARCHAR(255) NULL,
