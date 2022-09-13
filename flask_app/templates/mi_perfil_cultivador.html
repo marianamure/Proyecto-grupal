@@ -53,14 +53,14 @@
                         {% for crop in crops %}
                             <tr class="table align-middle">
                                 <td>{{crop.farm}}</td>
-                                <td>{{crop.estate}}</td>
+                                <td>{{crop.state}}</td>
                                 <td>{{crop.municipality}}</td>
                                 <td>{{crop.fertilizer}}</td>
                                 <td>{{crop.f_amount}}</td>
                                 <td>{{crop.date}}</td>
                                 <td>{{crop.disease}}</td>
-                                <td>{{crop.product}}</td>
-                                <td>{{crop.descripcion}}</td>
+                                <td>{{crop.production}}</td>
+                                <td>{{crop.description}}</td>
                                 <td>
                                     {% if crop.image != None %}
                                     <a href="{{url_for('static', filename='images/'+crop.image)}}" download><br>Descargar</a>

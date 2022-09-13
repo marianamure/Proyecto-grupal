@@ -41,55 +41,55 @@
                     <form action="/edita_dato" method="post" enctype="multipart/form-data"> 
                         <input type="hidden" value="{{user.id}}" name="user_id">
                         <div class="form-group row">
-                            <label for="finca" class="col-sm-2 col-form-label"><b>Finca:</b></label>
+                            <label for="farm" class="col-sm-2 col-form-label"><b>Finca:</b></label>
                             <div class="col-sm-10">
-                                <input type="text" id="finca" name="finca" class="form-control" value="{{crop.farm}}">
+                                <input type="text" id="farm" name="farm" class="form-control" value="{{crop.farm}}">
                             </div>
                         </div>
                         <br>
                         <div class="form-group row">
-                            <label for="departamento" class="col-sm-2 col-form-label"><b>Departamento:</b></label>
+                            <label for="state" class="col-sm-2 col-form-label"><b>Departamento:</b></label>
                             <div class="col-sm-10">
-                                <input type="text" id="departamento" name="departamento" class="form-control"
-                                value="{{crop.estate}}">
+                                <input type="text" id="state" name="state" class="form-control"
+                                value="{{crop.state}}">
                             </div>
                         </div>
                         <br>
                         <div class="form-group row">
-                            <label for="municipio" class="col-sm-2 col-form-label"><b>Municipio:</b></label>
+                            <label for="municipality" class="col-sm-2 col-form-label"><b>Municipio:</b></label>
                             <div class="col-sm-10">
-                                <input type="text" id="municipio" name="municipio" class="form-control"
+                                <input type="text" id="municipality" name="municipality" class="form-control"
                                 value="{{crop.municipality}}">
                             </div>
                         </div>
                         <br>
                         <div class="form-group row">
-                            <label for="nombre_fertilizante" class="col-sm-4 col-form-label"><b>Nombre del fertilizante:</b></label>
+                            <label for="fertilizer" class="col-sm-4 col-form-label"><b>Nombre del fertilizante:</b></label>
                             <div class="col-sm-8">
-                                <input type="text" id="nombre_fertilizante" name="nombre_fertilizante" class="form-control"
+                                <input type="text" id="fertilizer" name="fertilizer" class="form-control"
                                 value="{{crop.fertilizer}}">
                             </div>
                         </div>
                         <br>
                         <div class="form-group row">
-                            <label for="cantidad_fertilizante" class="col-sm-5 col-form-label"><b>Cantidad de fertilizante aplicado (kg/ha):</b></label>
+                            <label for="f_amount" class="col-sm-5 col-form-label"><b>Cantidad de fertilizante aplicado (kg/ha):</b></label>
                             <div class="col-sm-7">
-                                <input type="text" id="cantidad_fertilizante" name="cantidad_fertilizante" class="form-control"
+                                <input type="text" id="f_amount" name="f_amount" class="form-control"
                                 value="{{crop.f_amount}}">
                             </div>
                         </div>
                         <br>
                         <div class="form-group row">
-                            <label for="fecha_cosecha" class="col-sm-3 col-form-label"><b>Fecha de la cosecha:</b></label>
+                            <label for="date" class="col-sm-3 col-form-label"><b>Fecha de la cosecha:</b></label>
                             <div class="col-sm-9">
-                                <input type="date" id="fecha_cosecha" name="fecha_cosecha" class="form-control" value="{{crop.date}}">
+                                <input type="date" id="date" name="date" class="form-control" value="{{crop.date}}">
                             </div>
                         </div>
                         <br>
                         <div class="form-group row">
-                            <label for="enfermedades" class="col-sm-3 col-form-label"><b>Enfermedades:</b></label>
+                            <label for="disease" class="col-sm-3 col-form-label"><b>Enfermedades:</b></label>
                             <div class="col-sm-9">
-                                <select class="form-control form-select" name="enfermedades" id="enfermedades" >
+                                <select class="form-control form-select" name="disease" id="disease" >
                                     <option value="{{crop.disease}}">{{crop.disease}}</option>
                                     {% if crop.disease != "Ninguna" %}
                                     <option value="ninguna">Ninguna</option>
@@ -105,23 +105,23 @@
                         </div>
                         <br>
                         <div class="form-group row">
-                            <label for="produccion" class="col-sm-3 col-form-label"><b>Produccion (kg/ha):</b></label>
+                            <label for="production" class="col-sm-3 col-form-label"><b>Produccion (kg/ha):</b></label>
                             <div class="col-sm-9">
-                                <input type="text" id="produccion" name="produccion" class="form-control" value="{{crop.product}}">
+                                <input type="text" id="production" name="production" class="form-control" value="{{crop.production}}">
                             </div>
                         </div>
                         <br>
                         <div class="form-group row">
-                            <label for="descripcion" class="col-sm-2 col-form-label"><b>Descripcion:</b></label>
+                            <label for="description" class="col-sm-2 col-form-label"><b>Descripcion:</b></label>
                             <div class="col-sm-10">
-                                <textarea id="descripcion" name="descripcion" class="form-control">{{crop.description}}"</textarea>
+                                <textarea id="description" name="description" class="form-control">{{crop.description}}"</textarea>
                             </div>
                         </div>
                         <br>
                         <div class="form-group row">
-                            <label for="imagen" class="col-sm-2 col-form-label"><b>Imagen:</b></label>
+                            <label for="image" class="col-sm-2 col-form-label"><b>Imagen:</b></label>
                             <div class="col-sm-10">
-                                <input type="file" id="imagen" name="imagen" class="form-control" >
+                                <input type="file" id="image" name="image" class="form-control" >
                         </div>
                         <br>
                         <div class="muro">
@@ -129,12 +129,12 @@
                                 <label><h4>¿Deseas publicar en el muro?</h4></label>
                             </div>
                             <div>
-                                <input type="radio" name="publicar" id="publicarSi" value="1" {% if crop.share == 1 %} checked {% endif %}>
-                                <label for="publicarSi">SI</label>
+                                <input type="radio" name="share" id="shareSi" value="1" {% if crop.share == 1 %} checked {% endif %}>
+                                <label for="shareSi">SI</label>
                             </div>
                             <div>
-                                <input type="radio" name="publicar" id="publicarNo" value="0" {% if crop.share == 0 %} checked {% endif %}>
-                                <label for="publicarNo">NO</label>
+                                <input type="radio" name="share" id="shareNo" value="0" {% if crop.share == 0 %} checked {% endif %}>
+                                <label for="shareNo">NO</label>
                             </div>
                         </div>
                         <div class="d-grip gap-2 d-md-flex justify-content-md-center">
