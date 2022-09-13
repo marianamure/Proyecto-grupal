@@ -27,31 +27,41 @@
                 <div class="col-9">
 
                     <div id="alertMessage"></div>
-
+                    <br>
                     <form action="/registro_cultivador" method="post" id="cultivator_registrer_js"> 
-                        <div class="form-group">
-                            <label for="full_name"><b>Nombre completo o razon social:</b></label>
-                            <input type="text" id="full_name" name="full_name" class="form-control">
+                        <div class="form-group row">
+                            <label for="full_name" class="col-sm-4 col-form-label"><b>Nombre completo o razon social:</b></label>
+                            <div class="col-sm-8">
+                                <input type="text" id="full_name" name="full_name" class="form-control">
+                            </div>
                         </div>
                         <br>
-                        <div class="form-group">
-                            <label for="n_identification"><b>Numero de identificacion:</b></label>
-                            <input type="text" id="n_identification" name="n_identification" class="form-control">
+                        <div class="form-group row">
+                            <label for="n_identification" class="col-sm-3 col-form-label"><b>Numero de identificacion:</b></label>
+                            <div class="col-sm-9">
+                                <input type="text" id="n_identification" name="n_identification" class="form-control">
+                            </div>
                         </div>
                         <br>
-                        <div class="form-group">
-                            <label for="email"><b>E-mail:</b></label>
-                            <input type="text" id="email" name="email" class="form-control">
+                        <div class="form-group row">
+                            <label for="email" class="col-sm-2 col-form-label"><b>E-mail:</b></label>
+                            <div class="col-sm-10">
+                                <input type="text" id="email" name="email" class="form-control">
+                            </div>
                         </div>
                         <br>
-                        <div class="form-group">
-                            <label for="password"><b>Password:</b></label>
-                            <input type="password" id="password" name="password" class="form-control">
+                        <div class="form-group row">
+                            <label for="password" class="col-sm-2 col-form-label"><b>Password:</b></label>
+                            <div class="col-sm-10">
+                                <input type="password" id="password" name="password" class="form-control">
+                            </div>
                         </div>
                         <br>
-                        <div class="form-group">
-                            <label for="confirm_password"><b>Confirma Password:</b></label>
-                            <input type="password" id="confirm_password" name="confirm_password" class="form-control">
+                        <div class="form-group row">
+                            <label for="confirm_password" class="col-sm-3 col-form-label"><b>Confirma Password:</b></label>
+                            <div class="col-sm-9">
+                                <input type="password" id="confirm_password" name="confirm_password" class="form-control">
+                            </div>
                         </div>
                         <br>
                         <div class="botones">
