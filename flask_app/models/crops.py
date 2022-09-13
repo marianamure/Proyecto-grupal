@@ -77,7 +77,7 @@ class Crop:
 
     @classmethod
     def get_all(cls,formulario):
-        query = "SELECT crops.*, state FROM crops LEFT JOIN cultivators ON cultivators.id = crops.cultivators_id WHERE cultivators.id=%(id)s;"
+        query = "SELECT crops.*, farm FROM crops LEFT JOIN cultivators ON cultivators.id = crops.cultivators_id WHERE cultivators.id=%(id)s"
         results = connectToMySQL('weedproject').query_db(query,formulario) 
         crops = []
         for crop in results:
@@ -98,7 +98,7 @@ class Crop:
         if(formulario['imagen'] != ''):
             query = "UPDATE publicaciones SET estate=%(estate)s, municipality=%(municipality)s, fertilizer=%(fertilizer)s, f_amount=%(f_amount)s, date=%(date)s, disease=%(disease)s, product=%(product)s, description=%(description)s, image=%(image)s, share=%(share)s WHERE id = %(id)s"
         else:
-            query = "UPDATE publicaciones SET estate=%(estate)s, municipality=%(municipality)s, fertilizer=%(fertilizer)s, f_amount=%(f_amount)s, date=%(date)s, disease=%(disease)s, product=%(product)s, description=%(description)s, share=%(share)s WHERE id = %(id)s""
+            query = "UPDATE publicaciones SET estate=%(estate)s, municipality=%(municipality)s, fertilizer=%(fertilizer)s, f_amount=%(f_amount)s, date=%(date)s, disease=%(disease)s, product=%(product)s, description=%(description)s, share=%(share)s WHERE id = %(id)s"
         result = connectToMySQL('weedproject').query_db(query, formulario)
         return result
 

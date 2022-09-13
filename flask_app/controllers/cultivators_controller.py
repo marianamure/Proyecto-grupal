@@ -54,7 +54,7 @@ def vistaperfil():
 
     cultivator = Cultivator.get_by_id(formulario)
 
-    crops = Crop.get_all(formulario)
+    crops = Crop.get_all(formulario)   
 
     return render_template('mi_perfil_cultivador.html', cultivator = cultivator, crops = crops)
 
