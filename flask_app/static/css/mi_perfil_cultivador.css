@@ -5,7 +5,7 @@
 }
 
 .logo {
-    height: 50px;
+    height: 3.5rem;
 }
 
 .btn {
@@ -13,10 +13,8 @@
 }
 
 .muro, .salida{
-    height: 25px;
-    
+    height: 1.5rem;
     margin-right: 10px;
-
 }
 
 #barra {
@@ -41,21 +39,24 @@ table {
 }
 
 .excel {
-    height: 25px;
+    height: 1.5rem;
     margin-right: 10px;
 }
 
 .ing {
-    height: 25px;
+    height: 1.5rem;
     margin-right: 10px;
 }
 
 #hide {
     background-color: #f5ab34;
-
 }
 
 #enc {
     background-color: #fd626d;
 }
 
+.cannabis {
+    height: 1.5rem;
+    margin-right: 10px;
+}

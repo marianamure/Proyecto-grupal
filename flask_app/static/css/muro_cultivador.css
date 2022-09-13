@@ -4,14 +4,13 @@
     font-family: 'Signika Negative', sans-serif;
 }
 
-.salida, .perfil{
-    height: 25px;
-    
+.salida, .perfil, .borrar{
+    height: 1.5rem; 
     margin-right: 10px;
 
 }
 .logo {
-    height: 50px;
+    height: 3.5rem;
 }
 
 #barra {
@@ -25,14 +24,12 @@ h4 {
     color: rgb(44, 82, 44);
 }
 
-
 .btn {
     box-shadow: 2px 2px black;
 }
 
 .card-body {
     width: 80%;
-    
 }
 
 a:hover{
@@ -47,5 +44,4 @@ a:hover{
     padding: 10px 20px;
     border-radius: 10px;
     box-shadow: 2px 2px black;
-
 }

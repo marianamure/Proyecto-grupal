@@ -17,7 +17,7 @@ h3 {
 }
 
 .logo {
-    height: 50px;
+    height: 3.5rem;
 }
 
 #barra {
@@ -51,6 +51,6 @@ b {
 }
 
 .botones img {
-    height: 25px;
+    height: 1.5rem;
     border-radius: 100px;
 }

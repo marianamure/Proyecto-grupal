@@ -77,6 +77,40 @@
             </div>
             <br>
             <h2>Portafolio de productos</h2>
+            <a href="/nuevo_producto" class="btn btn-secondary"><img src="../static/images/canabis.jpg" alt="canabis" class="cannabis">Ingresar producto</a>
+            <table class="table table-hover table-table border table table-sm" id="datoscultivo">
+                <thead class="table-light">
+                    <tr class="table align-middle" id="enc">
+                        <th>Producto</th>
+                        <th>Descripcion</th>
+                        <th>Punto de Venta</th>
+                        <th>Presentacion</th>
+                        <th>Precio</th>
+                        <th>Foto</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for product in products %}
+                        <tr  class="table align-middle">
+                            <td>{{product.name}}</td>
+                            <td>{{product.description}}</td>
+                            <td>{{product.p_sale}}</td>
+                            <td>{{product.presentation}}</td>
+                            <td>{{product.price}}</td>
+                            <td>
+                                {% if product.image != None %}
+                                <a href="{{url_for('static', filename='images/'+product.image)}}" download><br>Descargar</a>
+                                {% endif %}
+                            </td>
+                            <td>
+                                <a href="/editar/product/{{product.id}}" class="btn btn-secondary btn-sm " >Editar</a>
+                                <a href="/eliminar/product/{{product.id}}" class="btn btn-danger btn-sm delete" data-confirm="Esta seguro de eliminar este elemento?">Borrar</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
 
         </div>
     </div>
