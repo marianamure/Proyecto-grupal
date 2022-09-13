@@ -25,7 +25,7 @@
             </header>
         </div>
         <br>
-        <h2>Ingresa aqui tu producto</h2>  
+        <h2>Edita aqui tu producto</h2>  
         <br>  
         <div class="row" id="form">
             <div class="col-10" id="database">
@@ -44,44 +44,44 @@
                         <input type="hidden" value="{{user.id}}" name="user_id">
                         
                         <div class="form-group row">
-                            <label for="producto" class="col-sm-2 col-form-label"><b>Producto:</b></label>
+                            <label for="name" class="col-sm-2 col-form-label"><b>Producto:</b></label>
                             <div class="col-sm-10">
-                                <input type="text" id="producto" name="producto" class="form-control" value="{{product.name}}">
+                                <input type="text" id="name" name="name" class="form-control" value="{{product.name}}">
                             </div>
                         </div>
                         <br>
                         <div class="form-group row">
-                            <label for="descripcion" class="col-sm-2 col-form-label"><b>Descripcion:</b></label>
+                            <label for="description" class="col-sm-2 col-form-label"><b>Descripcion:</b></label>
                             <div class="col-sm-10">
-                                <input type="text" id="descripcion" name="descripcion" class="form-control" value="{{product.description}}">
+                                <input type="text" id="description" name="description" class="form-control" value="{{product.description}}">
                             </div>
                         </div>
                         <br>
                         <div class="form-group row">
-                            <label for="punto_venta" class="col-sm-3 col-form-label"><b>Punto de venta:</b></label>
+                            <label for="p_sale" class="col-sm-3 col-form-label"><b>Punto de venta:</b></label>
                             <div class="col-sm-9">
-                                <input type="text" id="punto_venta" name="punto_venta" class="form-control" value="{{product.p_sale}}">
+                                <input type="text" id="p_sale" name="p_sale" class="form-control" value="{{product.p_sale}}">
                             </div>
                         </div>
                         <br>
                         <div class="form-group row">
-                            <label for="presentacion" class="col-sm-2 col-form-label"><b>Presentacion:</b></label>
+                            <label for="presentation" class="col-sm-2 col-form-label"><b>Presentacion:</b></label>
                             <div class="col-sm-10">
-                                <input type="text" id="presentacion" name="presentacion" class="form-control" value="{{product.presentation}}">
+                                <input type="text" id="presentation" name="presentation" class="form-control" value="{{product.presentation}}">
                             </div>
                         </div>
                         <br>
                         <div class="form-group row">
-                            <label for="precio" class="col-sm-2 col-form-label"><b>Precio:</b></label>
+                            <label for="price" class="col-sm-2 col-form-label"><b>Precio:</b></label>
                             <div class="col-sm-10">
-                                <input type="text" id="precio" name="precio" class="form-control" value="{{product.price}}">
+                                <input type="text" id="price" name="price" class="form-control" value="{{product.price}}">
                             </div>
                         </div>
                         <br>
                         <div class="form-group row">
-                            <label for="foto" class="col-sm-2 col-form-label"><b>Foto:</b></label>
+                            <label for="image" class="col-sm-2 col-form-label"><b>Foto:</b></label>
                             <div class="col-sm-10">
-                                <input type="file" id="foto" name="foto" class="form-control">
+                                <input type="file" id="image" name="image" class="form-control">
                             </div>
                         </div>
                         <br>

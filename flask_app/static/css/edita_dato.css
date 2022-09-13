@@ -1,0 +1,66 @@
+* {
+    margin: 0px auto;
+    padding: 0px auto;
+    font-family: 'Signika Negative', sans-serif;
+}
+
+.logo {
+    height: 53.5rem;
+}
+
+#barra {
+    background-color: rgb(44, 82, 44);
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+h4, h2 {
+    text-align: center;
+    color: rgb(44, 82, 44);
+}
+
+.salida, .perfil {
+    height: 1.5rem;
+    margin-right: 10px;
+}
+
+.btn {
+    box-shadow: 2px 2px black;
+}
+
+#form  {
+    background-image: url("../images/cultivo2.jpg");
+    background-position: center;
+    background-size: auto;
+    background-repeat: no-repeat;
+    margin-bottom: 20px;
+}
+
+label, h4 {
+    color: white;
+
+}
+
+.btn-light {
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+.muro {
+    color: white;
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+
+#boton {
+    background-color: #33a48a;
+    color:white;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 10px;
+    box-shadow: 2px 2px black;
+    margin-right: 20px;
+}

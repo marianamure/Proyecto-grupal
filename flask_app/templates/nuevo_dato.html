@@ -41,55 +41,55 @@
                     <form action="/nuevo_dato" method="post" enctype="multipart/form-data"> 
                         <input type="hidden" value="{{user.id}}" name="user_id">
                         <div class="form-group row">
-                            <label for="finca" class="col-sm-2 col-form-label"><b>Finca:</b></label>
+                            <label for="farm" class="col-sm-2 col-form-label"><b>Finca:</b></label>
                             <div class="col-sm-10">
-                                <input type="text" id="finca" name="finca" class="form-control" placeholder="indique el nombre de la finca">
+                                <input type="text" id="farm" name="farm" class="form-control" placeholder="indique el nombre de la finca">
                             </div>
                         </div>
                         <br>
                         <div class="form-group row">
-                            <label for="departamento" class="col-sm-2 col-form-label"><b>Departamento:</b></label>
+                            <label for="state" class="col-sm-2 col-form-label"><b>Departamento:</b></label>
                             <div class="col-sm-10">
-                                <input type="text" id="departamento" name="departamento" class="form-control"
+                                <input type="text" id="state" name="state" class="form-control"
                                 placeholder="indique el nombre del departamento donde está ubicada la finca">
                             </div>
                         </div>
                         <br>
                         <div class="form-group row">
-                            <label for="municipio" class="col-sm-2 col-form-label"><b>Municipio:</b></label>
+                            <label for="municipality" class="col-sm-2 col-form-label"><b>Municipio:</b></label>
                             <div class="col-sm-10">
-                                <input type="text" id="municipio" name="municipio" class="form-control"
+                                <input type="text" id="municipality" name="municipality" class="form-control"
                                 placeholder="indique el nombre del municipio donde está ubicada la finca">
                             </div>
                         </div>
                         <br>
                         <div class="form-group row">
-                            <label for="nombre_fertilizante" class="col-sm-4 col-form-label"><b>Nombre del fertilizante:</b></label>
+                            <label for="fertilizer" class="col-sm-4 col-form-label"><b>Nombre del fertilizante:</b></label>
                             <div class="col-sm-8">
-                                <input type="text" id="nombre_fertilizante" name="nombre_fertilizante" class="form-control"
+                                <input type="text" id="fertilizer" name="fertilizer" class="form-control"
                                 placeholder="indique el nombre del fertilizante usado">
                             </div>
                         </div>
                         <br>
                         <div class="form-group row">
-                            <label for="cantidad_fertilizante" class="col-sm-5 col-form-label"><b>Cantidad de fertilizante aplicado (kg/ha):</b></label>
+                            <label for="f_amount" class="col-sm-5 col-form-label"><b>Cantidad de fertilizante aplicado (kg/ha):</b></label>
                             <div class="col-sm-7">
-                                <input type="text" id="cantidad_fertilizante" name="cantidad_fertilizante" class="form-control"
+                                <input type="text" id="f_amount" name="f_amount" class="form-control"
                                 placeholder="indique la cantidad del fertilizante usado">
                             </div>
                         </div>
                         <br>
                         <div class="form-group row">
-                            <label for="fecha_cosecha" class="col-sm-3 col-form-label"><b>Fecha de la cosecha:</b></label>
+                            <label for="date" class="col-sm-3 col-form-label"><b>Fecha de la cosecha:</b></label>
                             <div class="col-sm-9">
-                                <input type="date" id="fecha_cosecha" name="fecha_cosecha" class="form-control" placeholder="indique la fecha de recogida de la cosecha">
+                                <input type="date" id="date" name="date" class="form-control" placeholder="indique la fecha de recogida de la cosecha">
                             </div>
                         </div>
                         <br>
                         <div class="form-group row">
-                            <label for="enfermedades" class="col-sm-3 col-form-label"><b>Enfermedades:</b></label>
+                            <label for="disease" class="col-sm-3 col-form-label"><b>Enfermedades:</b></label>
                             <div class="col-sm-9">
-                                <select class="form-control form-select" name="enfermedades" id="enfermedades" >
+                                <select class="form-control form-select" name="disease" id="disease" >
                                     <option value=""></option>
                                     <option value="deficiencia">Ninguna</option>
                                     <option value="infecciosa">Infecciosa</option>
@@ -99,23 +99,23 @@
                         </div>
                         <br>
                         <div class="form-group row">
-                            <label for="produccion" class="col-sm-3 col-form-label"><b>Produccion (kg/ha):</b></label>
+                            <label for="production" class="col-sm-3 col-form-label"><b>Produccion (kg/ha):</b></label>
                             <div class="col-sm-9">
-                                <input type="text" id="produccion" name="produccion" class="form-control" placeholder="indique los kg de producto obtenidos por hectarea cultivada">
+                                <input type="text" id="production" name="production" class="form-control" placeholder="indique los kg de producto obtenidos por hectarea cultivada">
                             </div>
                         </div>
                         <br>
                         <div class="form-group row">
-                            <label for="descripcion" class="col-sm-2 col-form-label"><b>Descripcion:</b></label>
+                            <label for="description" class="col-sm-2 col-form-label"><b>Descripcion:</b></label>
                             <div class="col-sm-10">
-                                <textarea id="descripcion" name="descripcion" class="form-control" placeholder="en este espacio puedes realizar la descripción que desees sobre tu cultivo"></textarea>
+                                <textarea id="description" name="description" class="form-control" placeholder="en este espacio puedes realizar la descripción que desees sobre tu cultivo"></textarea>
                             </div>
                         </div>
                         <br>
                         <div class="form-group row">
-                            <label for="imagen" class="col-sm-2 col-form-label"><b>Imagen:</b></label>
+                            <label for="image" class="col-sm-2 col-form-label"><b>Imagen:</b></label>
                             <div class="col-sm-10">
-                                <input type="file" id="imagen" name="imagen" class="form-control" >
+                                <input type="file" id="image" name="image" class="form-control" >
                         </div>
                         <br>
                         <div class="muro">
@@ -123,10 +123,12 @@
                                 <h4>Deseas publicar en el muro?</h4>
                             </div>
                             <div>
-                                <input type="radio" name="publicar" value="Si">Si
+                                <input type="radio" name="share" value="Si">
+                                <label for="shareSi">SI</label>
                             </div>
                             <div>
-                                <input type="radio" name="publicar" value="No">No
+                                <input type="radio" name="share" value="No">
+                                <label for="shareNo">NO</label>
                             </div>
                         </div>
 

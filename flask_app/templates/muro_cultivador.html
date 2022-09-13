@@ -26,40 +26,43 @@
             <h4>Aqui podras interactuar con tu comunidad, dar sugerencias, aportar ideas y generar discusiones en torno a las condiciones de tu cultivo</h4>
             <br>
             <div class="col-12">
-                <div class="card">
-                    <div class="card-title">
-                        
+                {% for crop in crops %}
+                    <div class="card">
+                        <div class="card-title">
+                            
+                        </div>
+                    
+                        <div class="card-body">
+                            <div>
+                                <b>Descripcion:</b> {{crop.description}}
+                            </div>
+                            <div>
+                                <b>Imagen:</b> {{crop.image}}
+                                <img class="foto" src="{{ url_for('static', filename='images/'+crops.image ) }}" alt="foto" />
+                            </div>
+                    
+                            <h4>Comentarios Recibidos</h4>
+                            {% for comment in comments %}
+                                <div class="card">
+                                    <div class="card-title">{{comment.sender}}dice:</div>
+                                    <div class="card-text">{{comment.comment}}</div>                            
+                                    <a class="btn btn-danger" href="/eliminar/comentario/{{comment.id}}"><img src="../static/images/borrar.jpg" alt="borrar" class="borrar">Borrar</a>                                                       
+                                </div>
+                            {% endfor %}
+
+                            <hr>
+
+                            <form action="/send_comentario" method="post">
+                                <label for="comentario" class="comentario"><b> Escribe tu comentario:</b></label>
+                                <input type="text" id="comentario" name="contenido" class="form-control">
+                                <input type="hidden" value="{{publicaciones.id}}" name="publicacion_id">
+                                <input type="hidden" value="{{user.id}}" name="user_id">
+                                <br>
+                                <input type="submit" value="Enviar" class="btn btn-secondary">
+                            </form>
+                        </div>
                     </div>
-                    <div class="card-body">
-                        <div>
-                            <b>Descripcion:</b> {{publicaciones.descripcion}}
-                        </div>
-                        <div>
-                            <b>Imagen:</b> {{publicaciones.imagen}}
-                            <img class="foto" src="{{ url_for('static', filename='images/'+publicaciones.imagen ) }}" alt="foto" />
-                        </div>
-
-                        <h4>Comentarios Recibidos</h4>
-                    {% for comentario in comentarios %}
-                        <div class="card">
-                            <div class="card-title">{{comentario.sender}}dice:</div>
-                            <div class="card-text">{{comentario.contenido}}</div>                            
-                            <a class="btn btn-danger" href="/eliminar/comentario/{{comentario.id}}"><img src="../static/images/borrar.jpg" alt="borrar" class="borrar">Borrar</a>                                                       
-                        </div>
-                    {% endfor %}
-
-                        <hr>
-
-                        <form action="/send_comentario" method="post">
-                            <label for="comentario" class="comentario"><b> Escribe tu comentario:</b></label>
-                            <input type="text" id="comentario" name="contenido" class="form-control">
-                            <input type="hidden" value="{{publicaciones.id}}" name="publicacion_id">
-                            <input type="hidden" value="{{user.id}}" name="user_id">
-                            <br>
-                            <input type="submit" value="Enviar" class="btn btn-secondary">
-                        </form>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
         </div>
     </div>

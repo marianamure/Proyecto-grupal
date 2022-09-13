@@ -5,7 +5,7 @@
 }
 
 .logo {
-    height: 50px;
+    height: 3.5rem;
 }
 
 #barra {
@@ -16,7 +16,7 @@
 }
 
 .salida, .perfil {
-    height: 25px;
+    height: 1.5rem;
     margin-right: 10px;
 }
 

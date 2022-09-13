@@ -4,7 +4,7 @@
 }
 
 .logo {
-    height: 80px;
+    height: 6rem;
 }
 
 header {
@@ -21,7 +21,7 @@ nav {
     margin-bottom: 10px;
     color: whitesmoke;
     text-shadow: 0.1em 0.1em 0.2em black;
-    height: 90px;
+    height: fit-content;
     padding-left: 10px;
     
 }
@@ -29,7 +29,7 @@ nav {
 
 
 .icono {
-    height: 60px;
+    height: 4rem;
     border-radius: 100px;
     background-color: coral;
 }
