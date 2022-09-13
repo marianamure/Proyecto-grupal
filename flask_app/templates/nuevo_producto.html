@@ -17,9 +17,9 @@
         <div class="col-10">
             <header class="d-flex justify-content-between align-items-center" id="barra">
                 <img class="logo" src="../static/images/logo claro.png" alt="logo_claro"/>  
-                <h1>Bienvenid@ {{user.first_name}}</h1>   
+                <h1>Bienvenid@ {{cultivator.full_name}}</h1>   
                 <div class="button">
-                    <a href="/mi_perfil" id="boton"><img src="../static/images/perfil.jpg" alt="perfil" class="perfil"/>Mi Perfil</a>
+                    <a href="/perfil_cultivador" id="boton"><img src="../static/images/perfil.jpg" alt="perfil" class="perfil"/>Mi Perfil</a>
                     <a href="/logout" class="btn btn-danger"><img src="../static/images/salida.jpg" alt="salida" class="salida"/>Cerrar Sesión</a>
                 </div>
             </header>
@@ -40,13 +40,13 @@
                             </div>
                         {% endif %}
                     {% endwith %}
-                    <form action="/nuevo_producto" method="post" enctype="multipart/form-data"> 
-                        <input type="hidden" value="{{user.id}}" name="user_id">
+                    <form action="/crear_producto" method="post" enctype="multipart/form-data"> 
+                        <input type="hidden" value="{{cultivator.id}}" name="cultivators_id">
                         
                         <div class="form-group row">
                             <label for="product" class="col-sm-2 col-form-label"><b>Producto:</b></label>
                             <div class="col-sm-10">
-                                <input type="text" id="product" name="product" class="form-control" placeholder="Ingresa el nombre de tu producto">
+                                <input type="text" id="product" name="name" class="form-control" placeholder="Ingresa el nombre de tu producto">
                             </div>
                         </div>
                         <br>

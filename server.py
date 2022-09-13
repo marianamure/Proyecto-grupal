@@ -2,7 +2,7 @@
 from flask_app import app
 
 #Importando mi controlador
-from flask_app.controllers import index_controller, cultivators_controller, buyers_controller, crops_controller
+from flask_app.controllers import index_controller, cultivators_controller, buyers_controller, crops_controller, products_controller
 
 #pipenv install flask pymysql flask-bcrypt
 #pipenv shell

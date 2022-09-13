@@ -31,7 +31,7 @@
             <div style="overflow-x:auto;">
                 <input type="hidden" value="{{cultivator.id}}" name="cultivator_id">
                 <input type="hidden" value="{{crops.id}}" name="id">
-
+                
                 
                 <table class="table table-hover table-table border table table-sm" id="datoscultivo">
                     <thead class="table-light">
@@ -78,7 +78,8 @@
             <br>
             <h2>Portafolio de productos</h2>
             <a href="/nuevo_producto" class="btn btn-secondary"><img src="../static/images/canabis.jpg" alt="canabis" class="cannabis">Ingresar producto</a>
-            <table class="table table-hover table-table border table table-sm" id="datoscultivo">
+
+            <table class="table table-hover table-table border table table-sm" id="datosproductos">
                 <thead class="table-light">
                     <tr class="table align-middle" id="enc">
                         <th>Producto</th>
@@ -104,7 +105,7 @@
                                 {% endif %}
                             </td>
                             <td>
-                                <a href="//product/{{product.id}}" class="btn btn-secondary btn-sm " >Editar</a>
+                                <a href="/update/product/{{product.id}}" class="btn btn-secondary btn-sm " >Editar</a>
                                 <a href="/eliminar/product/{{product.id}}" class="btn btn-danger btn-sm delete" data-confirm="Esta seguro de eliminar este elemento?">Borrar</a>
                             </td>
                         </tr>
