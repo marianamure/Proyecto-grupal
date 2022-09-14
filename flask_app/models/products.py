@@ -87,17 +87,17 @@ class Product:
         product = cls(result[0])
         return product
 
-    """@classmethod
+    @classmethod
     def update(cls, formulario):
         if(formulario['image'] != ''):
-            query = "UPDATE crops SET farm=%(farm)s, state=%(state)s, municipality=%(municipality)s, fertilizer=%(fertilizer)s, f_amount=%(f_amount)s, date=%(date)s, disease=%(disease)s, production=%(production)s, description=%(description)s, image=%(image)s, share=%(share)s WHERE id = %(id)s"
+            query = "UPDATE products SET name=%(name)s, description=%(description)s, p_sale=%(p_sale)s, presentation=%(presentation)s, price=%(price)s, image=%(image)s WHERE id = %(id)s"
         else:
-            query = "UPDATE crops SET farm=%(farm)s, state=%(state)s, municipality=%(municipality)s, fertilizer=%(fertilizer)s, f_amount=%(f_amount)s, date=%(date)s, disease=%(disease)s, production=%(production)s, description=%(description)s, share=%(share)s WHERE id = %(id)s"
+            query = "UPDATE products SET name=%(name)s, description=%(description)s, p_sale=%(p_sale)s, presentation=%(presentation)s, price=%(price)s WHERE id = %(id)s"
         result = connectToMySQL('weedproject').query_db(query, formulario)
         return result
 
     @classmethod
     def delete(cls, formulario):
-        query = "DELETE FROM crops WHERE id = %(id)s;"
+        query = "DELETE FROM products WHERE id = %(id)s;"
         result = connectToMySQL('weedproject').query_db(query, formulario)
-        return result"""
+        return result
