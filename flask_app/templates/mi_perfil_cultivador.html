@@ -78,6 +78,7 @@
             <br>
             <h2>Portafolio de productos</h2>
             <a href="/nuevo_producto" class="btn btn-secondary"><img src="../static/images/canabis.jpg" alt="canabis" class="cannabis">Ingresar producto</a>
+            <button class="btn btn-success" id="btn" onclick="exportTableToExcel1('datosproductos', 'Reporte productos')"><img src="../static/images/export-excel.png" alt="excel" class="excel"/> Exportar a Excel</button>
 
             <table class="table table-hover table-table border table table-sm" id="datosproductos">
                 <thead class="table-light">
@@ -116,6 +117,7 @@
         </div>
     </div>
     <script src="../static/js/tableToExel.js" ></script>
+    <script src="../static/js/tableToExcel1.js" ></script>
     <script src="../static/js/app.js" ></script>
 </body>
 </html>

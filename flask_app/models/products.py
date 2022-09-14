@@ -14,53 +14,33 @@ class Product:
         self.updated_at = data['updated_at']
         self.cultivators_id = data['cultivators_id']
 
-    """@staticmethod
-    def valida_crop(formulario):
+    @staticmethod
+    def valida_products(formulario):
         es_valido = True 
 
         errores=[]
         
-        if formulario['farm'] == "":
-            errores.append('Debe ingresar el nombre de la finca')
-            es_valido = False
-
-        if formulario['state'] == "":
-            errores.append('Debe ingresar el nombre del departamento')
-            es_valido = False
-
-        if formulario['municipality'] == "":
-            errores.append('Debe ingresar el nombre del municipio')
-            es_valido = False
-        
-        if formulario['fertilizer'] == "":
-            errores.append('Debe ingresar el nombre del municipio')
-            es_valido = False
-        
-        if formulario['f_amount'] == "":
-            errores.append('Debe ingresar la cantidad de fertilizante')
-            es_valido = False
-        
-        if formulario['date'] == "":
-            errores.append('Debe ingresar la fecha de cosecha')
-            es_valido = False
-
-        if formulario['production'] == "":
-            errores.append('Debe ingresar la produccion de su cosecha')
+        if formulario['name'] == "":
+            errores.append('Debe ingresar el nombre del producto')
             es_valido = False
 
         if formulario['description'] == "":
             errores.append('Debe ingresar una descripcion')
             es_valido = False
 
-        if formulario['image'] == "":
-            errores.append('Debe ingresar una imagen')
-            es_valido = False
-
-        if formulario['share'] == "":
-            errores.append('Debe seleccionar si desea compartir')
+        if formulario['p_sale'] == "":
+            errores.append('Debe ingresar el punto de venta')
             es_valido = False
         
-        return (es_valido, errores)"""
+        if formulario['presentation'] == "":
+            errores.append('Debe ingresar la presentacion del producto')
+            es_valido = False
+        
+        if formulario['price'] == "":
+            errores.append('Debe ingresar el precio')
+            es_valido = False
+                
+        return (es_valido, errores)
 
 
     @classmethod
@@ -71,7 +51,7 @@ class Product:
 
     @classmethod
     def get_all(cls,formulario):
-        query = "SELECT products.*, name FROM products LEFT JOIN cultivators ON cultivators.id = products.cultivators_id"
+        query = "SELECT products.*, name FROM products LEFT JOIN cultivators ON cultivators.id = products.cultivators_id WHERE cultivators.id=%(id)s"
         results = connectToMySQL('weedproject').query_db(query,formulario) 
         products = []
         for product in results:

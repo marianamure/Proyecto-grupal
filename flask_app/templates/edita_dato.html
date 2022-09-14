@@ -10,17 +10,17 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Signika+Negative&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="../static/css/edita_dato.css">
+    <link rel="stylesheet" href="/static/css/edita_dato.css">
 </head>
 <body>
     <div class="container">
         <div class="col-10">
             <header class="d-flex justify-content-between align-items-center" id="barra">
-                <img class="logo" src="../static/images/logo claro.png" alt="logo_claro"/>  
+                <img class="logo" src="/static/images/logo claro.png" alt="logo_claro"/>  
                 <h1>Bienvenid@ {{cultivator.full_name}}</h1>   
                 <div class="button">
-                    <a href="/mi_perfil" id="boton"><img src="../static/images/perfil.jpg" alt="perfil" class="perfil"/>Mi Perfil</a>
-                    <a href="/logout" class="btn btn-danger"><img src="../static/images/salida.jpg" alt="salida" class="salida"/>Cerrar Sesión</a>
+                    <a href="/perfil_cultivador" id="boton"><img src="/static/images/perfil.jpg" alt="perfil" class="perfil"/>Mi Perfil</a>
+                    <a href="/logout" class="btn btn-danger"><img src="/static/images/salida.jpg" alt="salida" class="salida"/>Cerrar Sesión</a>
                 </div>
             </header>
         </div>
@@ -29,17 +29,10 @@
             <div class="col-10" id="database">
                 <div class="col-8">
 
-                    {% with messages = get_flashed_messages(category_filter=['publicacion']) %}
-                        {% if messages %}
-                            <div class="alert alert-danger">
-                                {% for message in messages %}
-                                    <p>{{message}}</p>
-                                {% endfor %}
-                            </div>
-                        {% endif %}
-                    {% endwith %}
-                    <form action="/update/data" method="post" enctype="multipart/form-data"> 
-                        <input type="hidden" value="{{crop.id}}" name="id">
+                    <div id="alertMessage"></div>
+                    <br>
+                    <form action="/update/data" method="post" enctype="multipart/form-data" id="edita_dato_js"> 
+                        <input type="hidden" value="{{crop.id}}" name="crops_id">
                         <div class="form-group row">
                             <label for="farm" class="col-sm-2 col-form-label"><b>Finca:</b></label>
                             <div class="col-sm-10">
@@ -146,5 +139,6 @@
             </div>
         </div>
     </div>
+    <script src="{{url_for('static', filename='js/edita_dato.js')}}"></script>
 </body>
 </html>

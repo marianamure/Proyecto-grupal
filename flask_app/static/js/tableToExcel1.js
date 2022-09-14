@@ -1,7 +1,7 @@
-function exportTableToExcel1(datoscultivo, filename = ''){
+function exportTableToExcel(datosproductos, filename = ''){
     var downloadLink;
     var dataType = 'application/vnd.ms-excel';
-    var tableSelect = document.getElementById(datoscultivo);
+    var tableSelect = document.getElementById(datosproductos);
     var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
 
   // Specify file name

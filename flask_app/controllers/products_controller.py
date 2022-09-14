@@ -1,4 +1,4 @@
-from flask import render_template, redirect, session, request, flash
+from flask import render_template, redirect, session, request, jsonify
 from flask_app import app
 
 
@@ -23,21 +23,21 @@ def nuevo_producto():
 
 @app.route('/crear_producto', methods=['POST'])
 def crear_producto():
-#    if 'cultivador_id' not in session: 
-#        return redirect('/')
+    if 'cultivator_id' not in session: 
+        return redirect('/')
 
-#    if not Crop.valida_crop(request.form):  
-#        return redirect('/nuevo_dato')
+    validacion = Product.valida_products(request.form)  
+    if not validacion[0]: 
+        return jsonify(message=validacion[1][0])
 
+    
     if 'image' not in request.files:
-        flash('Imagen no encontrada', 'product')
-        return redirect('/nuevo_producto')
+        return jsonify(message="Imagen no encontrada")
 
     image = request.files['image']
 
-    if image.filename == "":
-        flash ('Nombre de imagen vacía', 'product')
-        return redirect ('/nuevo_producto')
+    if image.filename == '':
+        return jsonify(message="Nombre de imagen vacío")
 
     name_image = secure_filename(image.filename) 
     image.save(os.path.join(app.config ['UPLOAD_FOLDER'],name_image)) 
@@ -53,12 +53,12 @@ def crear_producto():
     }
     Product.save(formulario)
 
-    return redirect('/perfil_cultivador')
+    return jsonify(message="Correcto")
 
 @app.route('/update/product/<int:id>') 
 def update_product(id):
-#    if 'cultivator_id' not in session: 
-#        return redirect('/')
+    if 'cultivator_id' not in session: 
+        return redirect('/')
 
     formulario = {
         'id': session['cultivator_id']
@@ -74,20 +74,27 @@ def update_product(id):
 
 @app.route('/update/data/product', methods=['POST'])
 def update_data_product():
-#    if 'cultivator_id' not in session: 
-#        return redirect('/')
+    if 'cultivator_id' not in session: 
+        return redirect('/')
     
 #    if not Publicacion.valida_publicacion(request.form): #llama a la función de valida_receta enviándole el formulario, comprueba que sea valido 
 #        return redirect('/editar/publicacion/'+request.form['id'])
 
-    name_image = ''
-    
-    if 'image' in request.files:
-        image = request.files['image']
+    validacion = Product.valida_products(request.form)  
+    if not validacion[0]: 
+        return jsonify(message=validacion[1][0])
 
-        if image.filename != "":
-            name_image = secure_filename(image.filename)    
-            image.save(os.path.join(app.config ['UPLOAD_FOLDER'],name_image)) 
+    
+    if 'image' not in request.files:
+        return jsonify(message="Imagen no encontrada")
+
+    image = request.files['image']
+
+    if image.filename == '':
+        return jsonify(message="Nombre de imagen vacío")
+
+    name_image = secure_filename(image.filename) 
+    image.save(os.path.join(app.config ['UPLOAD_FOLDER'],name_image)) 
 
     formulario = {
         'name' : request.form['name'],
@@ -96,11 +103,13 @@ def update_data_product():
         'presentation' : request.form['presentation'],
         'price' : request.form['price'],
         'image' : name_image,
-        'id': request.form['id'],
+
+        'id': request.form['product_id'],
     }
 
+
     Product.update(formulario)
-    return redirect('/perfil_cultivador')
+    return jsonify(message="Correcto")
 
 @app.route('/delete/product/<int:id>') #En mi URL voy a obtener ID
 def delete_product(id):
