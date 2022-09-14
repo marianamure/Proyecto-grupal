@@ -151,7 +151,7 @@ DEFAULT CHARACTER SET = utf8mb3;
 -- Table `weedproject`.`shopping_cart`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `weedproject`.`shopping_cart` (
-  `id` INT NOT NULL,
+  `id` INT NOT NULL AUTO_INCREMENT,
   `product_id` INT NOT NULL,
   `shopping_id` INT NOT NULL,
   `amount` INT NULL,
