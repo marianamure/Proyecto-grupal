@@ -147,6 +147,30 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb3;
 
 
+-- -----------------------------------------------------
+-- Table `weedproject`.`shopping_cart`
+-- -----------------------------------------------------
+CREATE TABLE IF NOT EXISTS `weedproject`.`shopping_cart` (
+  `product_id` INT NOT NULL,
+  `shopping_id` INT NOT NULL,
+  `amount` INT NULL,
+  PRIMARY KEY (`product_id`, `shopping_id`),
+  INDEX `fk_products_has_shopping_shopping1_idx` (`shopping_id` ASC) VISIBLE,
+  INDEX `fk_products_has_shopping_products1_idx` (`product_id` ASC) VISIBLE,
+  CONSTRAINT `fk_products_has_shopping_products1`
+    FOREIGN KEY (`product_id`)
+    REFERENCES `weedproject`.`products` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION,
+  CONSTRAINT `fk_products_has_shopping_shopping1`
+    FOREIGN KEY (`shopping_id`)
+    REFERENCES `weedproject`.`shopping` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB;
+DEFAULT CHARACTER SET = utf8mb3;
+
+
 SET SQL_MODE=@OLD_SQL_MODE;
 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
