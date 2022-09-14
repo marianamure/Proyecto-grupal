@@ -55,7 +55,7 @@ def crear_producto():
 
     return redirect('/perfil_cultivador')
 
-"""@app.route('/update/product/<int:id>') 
+@app.route('/update/product/<int:id>') 
 def update_product(id):
 #    if 'cultivator_id' not in session: 
 #        return redirect('/')
@@ -111,4 +111,4 @@ def delete_product(id):
     Product.delete(formulario)
 #    Product.delete2(formulario)
     
-    return redirect('/perfil_cultivador')"""
+    return redirect('/perfil_cultivador')

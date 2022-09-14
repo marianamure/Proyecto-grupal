@@ -29,16 +29,14 @@ def crear_dato():
     if not validacion[0]: 
         return jsonify(message=validacion[1][0])
 
-
-    """    if 'image' not in request.files:
-        flash('Imagen no encontrada', 'crop')
-        return redirect('/nuevo_dato')"""
+    
+    if 'image' not in request.files:
+        return jsonify(message="Imagen no encontrada")
 
     image = request.files['image']
 
-    """    if image.filename == "":
-        flash ('Nombre de imagen vacía', 'crop')
-        return redirect ('/nuevo_dato')"""
+    if image.filename == '':
+        return jsonify(message="Nombre de imagen vacío")
 
     name_image = secure_filename(image.filename) 
     image.save(os.path.join(app.config ['UPLOAD_FOLDER'],name_image)) 

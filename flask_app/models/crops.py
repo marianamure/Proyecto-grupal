@@ -58,10 +58,6 @@ class Crop:
             errores.append('Debe ingresar una descripcion')
             es_valido = False
 
-        if formulario['image'] == "":
-            errores.append('Debe ingresar una imagen')
-            es_valido = False
-
         if formulario['share'] == "":
             errores.append('Debe seleccionar si desea compartir')
             es_valido = False
