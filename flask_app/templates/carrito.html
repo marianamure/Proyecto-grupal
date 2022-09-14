@@ -14,7 +14,7 @@
         <div class="col-12">
             <header class="d-flex justify-content-between align-items-center">
                 <img src="../static/images/cannapp2.png" alt="cannapp_logo2" />
-                <h1>Bienvenid@ {{user.first_name}}</h1>
+                <h1>Bienvenid@ {{comprador.first_name}}</h1>
                 <a href="/muro_comprador" class="btn btn-danger">Atras</a>
                 <a href="/logout" class="btn btn-danger">Cerrar Sesión</a>
             </header>
@@ -32,21 +32,23 @@
                         </tr>
                     </thead>
                     <tbody>
-                        {% for publicacion in publicaciones %}
+                        
                             <tr>
-                                <td>{{.producto}}</td>
-                                <td>{{.cantidad}}</td>
-                                <td>{{.precio_unidad}}</td>
-                                <td>{{.total}}</td>
+                                <td>{{producto.name}}</td>
+                                <td>1</td>
+                                <td>{{producto.price}}</td>
                                 <td>
-                                    <a href="/eliminar/publicacion/{{publicacion.id}}" class="btn btn-danger btn-sm delete" data-confirm="Esta seguro de eliminar este elemento?">Borrar</a>
+                                    {{producto.price}}
+                                </td>
+                                <td>
+                                    Actualizar - Eliminar
                                 </td>
                             </tr>
-                        {% endfor %}
+                        
                     </tbody>
                 </table>
             </div>
-            <a href="/compra" class="btn btn-danger btn-sm delete" data-confirm="Esta seguro de eliminar este elemento?">Comprar ahora</a>
+            <a href="/finalizar_compra" class="btn btn-danger btn-sm delete" data-confirm="Finalizar compra?">Comprar ahora</a>
         </div>
     </div>
 </body>

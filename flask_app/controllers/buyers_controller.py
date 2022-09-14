@@ -1,9 +1,11 @@
 from email import message
+from itertools import product
 from flask import render_template, redirect, session, request, flash, jsonify
 from flask_app import app
 
 #Importación del modelo
 from flask_app.models.buyers import Buyer
+from flask_app.models.products import Product
 
 
 #Importación BCrypt
@@ -46,12 +48,70 @@ def registracomprador():
 @app.route('/muro_comprador')
 def vistamuro():
 
-    if 'user_id' not in session:
+    if 'comprador_id' not in session:
         return redirect('/')
 
     formulario = {
-        'id': session['user_id']
+        'id': session['comprador_id']
     }
 
     comprador = Buyer.get_by_id(formulario)
-    return render_template('muro_comprador.html', comprador = comprador)
+    productos = Product.get_all_for_buyers()
+    return render_template('muro_comprador.html', comprador = comprador, productos = productos)
+
+@app.route('/comprar/<int:id>')
+def agregar_producto_carrito(id):
+
+    if 'comprador_id' not in session:
+        return redirect('/')
+
+    formulario = {
+        'id': session['comprador_id']
+    }
+
+    formulario_producto = {
+        'id': id
+    }
+
+    comprador = Buyer.get_by_id(formulario)
+    productos = Product.get_all_for_buyers()
+    producto = Product.get_by_id(formulario_producto)
+
+    #session['product_ids'].append(id)
+
+    return render_template('carrito.html', comprador = comprador, productos = productos, producto = producto)
+
+@app.route('/finalizar_compra')
+def finalizar_compra():
+    if 'comprador_id' not in session:
+        return redirect('/')
+
+    formulario = {
+        'id': session['comprador_id']
+    }
+
+    comprador = Buyer.get_by_id(formulario)
+
+    # Metodo query guardar carro compra
+    # Metodo query guardar información compra
+    
+
+    return render_template('compra.html', comprador = comprador)
+
+@app.route('/registro_compra', methods=['POST'])
+def registrar_compra():
+    if 'comprador_id' not in session:
+        return redirect('/')
+
+    formulario = {
+        'address': request.form['address'],
+        'home_delivery': request.form['home_delivery'],
+        'method_payment': request.form['method_payment'],
+        'name_bank': request.form['name_bank'],
+        'state': request.form['state']
+    }
+
+    Product.terminar_compra(formulario)
+
+    return redirect('/muro_comprador')
+

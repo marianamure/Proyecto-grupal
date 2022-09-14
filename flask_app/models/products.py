@@ -13,6 +13,7 @@ class Product:
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
         self.cultivators_id = data['cultivators_id']
+        #self.cultivators_name = data['full_name']
 
     """@staticmethod
     def valida_crop(formulario):
@@ -81,11 +82,26 @@ class Product:
         return products
 
     @classmethod
+    def get_all_for_buyers(cls):
+        query = "SELECT * FROM products"
+        results = connectToMySQL('weedproject').query_db(query) 
+        products = []
+        for product in results:
+            products.append(cls(product)) 
+        return products
+
+    @classmethod
     def get_by_id(cls, formulario): 
         query = "SELECT products.*, name FROM products LEFT JOIN cultivators ON cultivators.id = products.cultivators_id WHERE products.id = %(id)s"
         result = connectToMySQL('weedproject').query_db(query, formulario) #Lista de diccionarios
         product = cls(result[0])
         return product
+
+    @classmethod
+    def terminar_compra(cls, formulario):
+        query = "INSERT INTO shopping (name_bank, address, home_delivery, method_payment, state) VALUES (%(name_bank)s, %(address)s, %(home_delivery)s, %(method_payment)s, %(state)s);"
+        result = connectToMySQL('weedproject').query_db(query, formulario)
+        return result
 
     """@classmethod
     def update(cls, formulario):
