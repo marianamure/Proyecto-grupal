@@ -20,7 +20,7 @@ class Crop:
         self.updated_at = data['updated_at']
         self.cultivators_id = data['cultivators_id']
 
-    """@staticmethod
+    @staticmethod
     def valida_crop(formulario):
         es_valido = True 
 
@@ -66,7 +66,7 @@ class Crop:
             errores.append('Debe seleccionar si desea compartir')
             es_valido = False
         
-        return (es_valido, errores)"""
+        return (es_valido, errores)
 
 
     @classmethod

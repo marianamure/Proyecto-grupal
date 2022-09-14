@@ -1,4 +1,4 @@
-from flask import render_template, redirect, session, request, flash
+from flask import render_template, redirect, session, request, jsonify
 from flask_app import app
 
 
@@ -22,21 +22,23 @@ def nuevo_dato():
 
 @app.route('/crear_dato', methods=['POST'])
 def crear_dato():
-#    if 'cultivador_id' not in session: 
-#        return redirect('/')
+    if 'cultivator_id' not in session: 
+        return redirect('/')
 
-#    if not Crop.valida_crop(request.form):  
-#        return redirect('/nuevo_dato')
+    validacion = Crop.valida_crop(request.form)  
+    if not validacion[0]: 
+        return jsonify(message=validacion[1][0])
 
-    if 'image' not in request.files:
+
+    """    if 'image' not in request.files:
         flash('Imagen no encontrada', 'crop')
-        return redirect('/nuevo_dato')
+        return redirect('/nuevo_dato')"""
 
     image = request.files['image']
 
-    if image.filename == "":
+    """    if image.filename == "":
         flash ('Nombre de imagen vacía', 'crop')
-        return redirect ('/nuevo_dato')
+        return redirect ('/nuevo_dato')"""
 
     name_image = secure_filename(image.filename) 
     image.save(os.path.join(app.config ['UPLOAD_FOLDER'],name_image)) 
@@ -57,7 +59,7 @@ def crear_dato():
     }
     Crop.save(formulario)
 
-    return redirect('/perfil_cultivador')
+    return jsonify(message="Correcto")
 
 @app.route('/update/crop/<int:id>') 
 def update_crop(id):

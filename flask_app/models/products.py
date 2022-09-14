@@ -71,23 +71,23 @@ class Product:
 
     @classmethod
     def get_all(cls,formulario):
-        query = "SELECT crops.*, farm FROM crops LEFT JOIN cultivators ON cultivators.id = crops.cultivators_id WHERE cultivators.id=%(id)s"
+        query = "SELECT products.*, name FROM products LEFT JOIN cultivators ON cultivators.id = products.cultivators_id"
         results = connectToMySQL('weedproject').query_db(query,formulario) 
-        crops = []
-        for crop in results:
+        products = []
+        for product in results:
             
-            crops.append(cls(crop)) 
+            products.append(cls(product)) 
 
-        return crops
+        return products
 
     @classmethod
     def get_by_id(cls, formulario): 
-        query = "SELECT crops.*, farm FROM crops LEFT JOIN cultivators ON cultivators.id = crops.cultivators_id WHERE crops.id = %(id)s"
+        query = "SELECT products.*, name FROM products LEFT JOIN cultivators ON cultivators.id = products.cultivators_id WHERE products.id = %(id)s"
         result = connectToMySQL('weedproject').query_db(query, formulario) #Lista de diccionarios
-        publicacion = cls(result[0])
-        return publicacion
+        product = cls(result[0])
+        return product
 
-    @classmethod
+    """@classmethod
     def update(cls, formulario):
         if(formulario['image'] != ''):
             query = "UPDATE crops SET farm=%(farm)s, state=%(state)s, municipality=%(municipality)s, fertilizer=%(fertilizer)s, f_amount=%(f_amount)s, date=%(date)s, disease=%(disease)s, production=%(production)s, description=%(description)s, image=%(image)s, share=%(share)s WHERE id = %(id)s"
@@ -100,4 +100,4 @@ class Product:
     def delete(cls, formulario):
         query = "DELETE FROM crops WHERE id = %(id)s;"
         result = connectToMySQL('weedproject').query_db(query, formulario)
-        return result
+        return result"""
