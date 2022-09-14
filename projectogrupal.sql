@@ -155,7 +155,7 @@ CREATE TABLE IF NOT EXISTS `weedproject`.`shopping_cart` (
   `product_id` INT NOT NULL,
   `shopping_id` INT NOT NULL,
   `amount` INT NULL,
-  PRIMARY KEY (`product_id`, `shopping_id`),
+  PRIMARY KEY (`id`, `product_id`, `shopping_id`),
   INDEX `fk_products_has_shopping_shopping1_idx` (`shopping_id` ASC) VISIBLE,
   INDEX `fk_products_has_shopping_products1_idx` (`product_id` ASC) VISIBLE,
   CONSTRAINT `fk_products_has_shopping_products1`
