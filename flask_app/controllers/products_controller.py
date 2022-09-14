@@ -55,8 +55,8 @@ def crear_producto():
 
     return redirect('/perfil_cultivador')
 
-"""@app.route('/update/crop/<int:id>') 
-def update_crop(id):
+"""@app.route('/update/product/<int:id>') 
+def update_product(id):
 #    if 'cultivator_id' not in session: 
 #        return redirect('/')
 
@@ -67,13 +67,13 @@ def update_crop(id):
     cultivator = Cultivator.get_by_id(formulario) 
 
     
-    formulario_crop = {"id": id}
-    crop = Crop.get_by_id(formulario_crop )
+    formulario_product = {"id": id}
+    product = Product.get_by_id(formulario_product )
 
-    return render_template('edita_dato.html', cultivator=cultivator, crop=crop)
+    return render_template('edita_producto.html', cultivator=cultivator, product=product)
 
-@app.route('/update/data', methods=['POST'])
-def update_data():
+@app.route('/update/data/product', methods=['POST'])
+def update_data_product():
 #    if 'cultivator_id' not in session: 
 #        return redirect('/')
     
@@ -90,30 +90,25 @@ def update_data():
             image.save(os.path.join(app.config ['UPLOAD_FOLDER'],name_image)) 
 
     formulario = {
-        'farm' : request.form['farm'],
-        'state' : request.form['state'],
-        'municipality' : request.form['municipality'],
-        'fertilizer' : request.form['fertilizer'],
-        'f_amount' : request.form['f_amount'],
-        'date' : request.form['date'],
-        'disease' : request.form['disease'],
-        'production' : request.form['production'],
+        'name' : request.form['name'],
         'description' : request.form['description'],
+        'p_sale' : request.form['p_sale'],
+        'presentation' : request.form['presentation'],
+        'price' : request.form['price'],
         'image' : name_image,
-        'share' : request.form['share'],
-        'id': request.form['id']
+        'id': request.form['id'],
     }
 
-    Crop.update(formulario)
+    Product.update(formulario)
     return redirect('/perfil_cultivador')
 
-@app.route('/delete/crop/<int:id>') #En mi URL voy a obtener ID
-def delete_crop(id):
+@app.route('/delete/product/<int:id>') #En mi URL voy a obtener ID
+def delete_product(id):
 #    if 'cultivator_id' not in session: #Solo puede ver la página si ya inició sesión 
 #        return redirect('/')
 
     formulario = {"id": id}
-    Crop.delete(formulario)
-#    Crop.delete2(formulario)
+    Product.delete(formulario)
+#    Product.delete2(formulario)
     
     return redirect('/perfil_cultivador')"""
