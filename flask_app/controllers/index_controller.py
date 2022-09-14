@@ -1,6 +1,3 @@
-
-
-from email import message
 from flask import render_template, redirect, session, request, flash, jsonify
 from flask_app import app
 
@@ -25,15 +22,12 @@ def login():
         print("buscando comprador")
         comprador = Buyer.get_by_email(request.form)
         if not comprador:
-            #flash('E-mail no encontrado', 'login')
-            #return redirect('/')
+
             return jsonify(message="E-mail no encontrado")
 
         if not bcrypt.check_password_hash(comprador.password, request.form['password']):
             
             return jsonify(message="Password incorrecto")
-            #flash('Password incorrecto', 'login')
-            #return redirect('/')
 
         session['comprador_id'] = comprador.id
         return jsonify(message="Correcto1")

@@ -31,24 +31,20 @@
             
             <!--Carrusel con los productos disponibles-->
             <div class="col-12">
-                {% for cultivator in cultivators %}
                     <div class="card">
-                        <div class="card-title">
-                            
-                            <h3><b>Vendedor:</b> {{cultivator.full_name}}</h3>
-                        </div>
+
                         
                         <div class="card-body">
                             <div class="container">
                                 <div class="row row-cols-4">
-                                    {% for product in products %}
+                                    {% for producto in productos %}
                                         <div class="col">
-                                            <img class="foto" src="{{ url_for('static', filename='images/'+publicaciones.imagen ) }}" alt="foto" />
-                                            <div>{{product.name}}</div>
-                                            <div>{{product.descripcion}}</div>
-                                            <div>{{product.presentation}}</div>
-                                            <div>{{product.price}}</div>
-                                            <a href="/comprar" class="btn btn-success"><img src="../static/images/Carrito compras.png" alt="comprar" class="comprar"/>Comprar</a>
+                                            <img class="foto" src="{{ url_for('static', filename='images/'+producto.image ) }}" alt="foto" />
+                                            <div>{{producto.name}}</div>
+                                            <div>{{producto.descripcion}}</div>
+                                            <div>{{producto.presentation}}</div>
+                                            <div>{{producto.price}}</div>
+                                            <a href="/comprar/{{producto.id}}" class="btn btn-success"><img src="../static/images/shopping-cart.png" alt="comprar" class="comprar"/>Comprar</a>
                                         </div>
                                         <br>
                                     {% endfor %}
@@ -56,7 +52,6 @@
                             </div>
                         </div>
                     </div>
-                {% endfor %}
             </div>
         </div>
     </div>
