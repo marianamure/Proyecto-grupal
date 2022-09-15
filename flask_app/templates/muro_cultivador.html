@@ -45,19 +45,24 @@
                             <hr>
                                 {% for comment in comments %}
                                 <div class="card">
-                                    <div class="card-title">{{comment.sender}}dice:</div>
+                                    <div class="card-title">{{comment.sender_name}}dice:</div>
                                     <div class="card-text">{{comment.comment}}</div>                            
                                     <a class="btn btn-danger" href="/eliminar/comentario/{{comment.id}}"><img src="../static/images/borrar.jpg" alt="borrar" class="borrar">Borrar</a>                                                       
                                 </div>
                                 {% endfor %}
+
+                        {% for u in cultivators %}
+                        {% if cultivator.id != u.id %}
                             <form action="/send_comentario" method="post">
-                                <label for="comentario" class="comentario"><b> Escribe tu comentario:</b></label>
-                                <input type="text" id="comentario" name="contenido" class="form-control">
-                                <input type="hidden" value="{{crop.id}}" name="publicacion_id">
-                                <input type="hidden" value="{{cultivator.id}}" name="user_id">
+                                <label>Mensaje para {{u.full_name}}</label>
+                                <textarea class="form-control" name="comment"></textarea>
+                                <input type="hidden" name="sender_id" value="{{cultivator.id}}">
+                                <input type="hidden" name="cultivators_id" value="{{u.id}}">
                                 <br>
                                 <input type="submit" value="Enviar" class="btn btn-secondary">
                             </form>
+                        {% endif %}
+                        {% endfor %}
                         </div>
                     </div>
                 {% endfor %}
