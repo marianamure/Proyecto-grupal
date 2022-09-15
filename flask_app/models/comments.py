@@ -17,17 +17,6 @@ class Comment:
         return result
 
     @classmethod
-    def get_crops(cls):
-        query = "SELECT *FROM crops"
-        results = connectToMySQL('weedproject').query_db(query) 
-        crops = []
-        for crop in results:
-            
-            crops.append(cls(crop)) 
-
-        return crops
-
-    @classmethod
     def get_cultivators_comments(cls, formulario):
         #formulario = {id: 1}
         #2 LEFT JOINS
@@ -41,11 +30,10 @@ class Comment:
         return comments
 
 
-
-
     @classmethod
     def eliminar(cls, formulario):
         #formulario = {id: 1}
         query = "DELETE FROM comments WHERE id = %(id)s"
         result = connectToMySQL('weedproject').query_db(query, formulario)
         return result
+
