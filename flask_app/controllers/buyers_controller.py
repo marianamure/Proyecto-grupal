@@ -167,11 +167,12 @@ def registrar_compra():
         return redirect('/')
 
     formulario = {
-        'address': request.form['address'],
-        'home_delivery': request.form['home_delivery'],
-        'method_payment': request.form['method_payment'],
-        'name_bank': request.form['name_bank'],
-        'state': request.form['state']
+        'address': request.form['domicilio'],
+        'home_delivery': request.form['retirar'],
+        'method_payment': request.form['transferencia'],
+        'name_bank': request.form['banco'],
+        'state': 'pending',
+        'user_id' : session['comprador_id']
     }
 
     Product.terminar_compra(formulario)

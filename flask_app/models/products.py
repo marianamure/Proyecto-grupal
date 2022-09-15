@@ -79,7 +79,7 @@ class Product:
 
     @classmethod
     def terminar_compra(cls, formulario):
-        query = "INSERT INTO shopping (name_bank, address, home_delivery, method_payment, state) VALUES (%(name_bank)s, %(address)s, %(home_delivery)s, %(method_payment)s, %(state)s);"
+        query = "INSERT INTO shopping (name_bank, address, home_delivery, method_payment, state, user_id) VALUES (%(name_bank)s, %(address)s, %(home_delivery)s, %(method_payment)s, %(state)s, %(user_id)s);"
         result = connectToMySQL('weedproject').query_db(query, formulario)
         return result
 
