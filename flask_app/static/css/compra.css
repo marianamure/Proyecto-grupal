@@ -1,0 +1,50 @@
+.carrito {
+    height: 30px;
+    width: 30px;
+} 
+
+* {
+    margin: 0px auto;
+    padding: 0px auto;
+    font-family: 'Signika Negative', sans-serif;
+}
+
+.logo {
+    height: 3.5rem;
+}
+
+#barra {
+    background-color: rgb(44, 82, 44);
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+h4 {
+    text-align: center;
+    color: rgb(44, 82, 44);
+}
+
+.card-body {
+    width: 100%;
+    
+}
+
+.foto {
+    justify-self: center;
+    width: 80%;
+
+}
+
+.salida, .comprar {
+    height: 1.5rem;
+    margin-right: 10px;
+}
+
+.btn {
+    box-shadow: 2px 2px black;
+}
+
+.foto{
+    height: 15rem;
+}

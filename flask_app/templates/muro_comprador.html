@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Signika+Negative&display=swap" rel="stylesheet">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="stylesheet" href="../static/css/muro_comprador.css">
     <link rel="stylesheet" href="../static/css/carrito.css">
 
@@ -21,14 +21,12 @@
             <header class="d-flex justify-content-between align-items-center" id="barra">
                 <img class="logo" src="../static/images/logo claro.png" alt="logo_claro"/>                
                 <h1>Bienvenid@ {{comprador.full_name}}</h1>
-<!--                <a href="/mi_perfil" class="btn btn-danger">Mi Perfil</a>-->
+
                 <a href="/logout" class="btn btn-danger"><img src="../static/images/salida.jpg" alt="salida" class="salida"/>Cerrar Sesión</a>
-                {% for producto in productos %}
-                <a href="/comprar/{{producto.id}}"   class="btn btn-danger">
-                  {% endfor %}
-                  <span><img src="../static/images/shopping-cart.png" alt="comprar" class="carrito"/></span>
+                <a href="/compra"   class="btn btn-danger">
+                <span><img src="../static/images/shopping-cart.png" alt="comprar" class="carrito"/></span>
                 </a>
-              
+
             </header>
             <hr>
             <h4>Aqui podras comprar hojas de canabis o sus productos </h4>
@@ -66,85 +64,4 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
 
-<body>
-	<div>
-		{% with messages = get_flashed_messages() %}
-		  {% if messages %}
-			<ul class=flashes>
-			{% for message in messages %}
-			  <li>{{ message }}</li>
-			{% endfor %}
-			</ul>
-		  {% endif %}
-		{% endwith %}
-	</div>
-
-	<div id="shopping-cart">
-		<div class="txt-heading">Shopping Cart</div>		
-		{% if 'cart_item' in session %}
-			<a id="btnEmpty" href="{{ url_for('.empty_cart') }}">Empty Cart</a>
-			<table class="tbl-cart" cellpadding="10" cellspacing="1">
-			<tbody>
-				<tr>
-					<th style="text-align:left;">Name</th>
-					<th style="text-align:left;">Code</th>
-					<th style="text-align:right;" width="5%">Quantity</th>
-					<th style="text-align:right;" width="10%">Unit Price</th>
-					<th style="text-align:right;" width="10%">Price</th>
-					<th style="text-align:center;" width="5%">Remove</th>
-				</tr>
-				{% for key, val in session['cart_item'].items() %}
-					{% set quantity = session['cart_item'][key]['quantity'] %}
-					{% set price = session['cart_item'][key]['price'] %}
-					{% set item_price = session['cart_item'][key]['total_price'] %}					
-					<tr>
-						<td><img src="/static/images/{{ session['cart_item'][key]['image'] }}" class="cart-item-image" />{{ session['cart_item'][key]['name'] }}</td>
-						<td>{{ session['cart_item'][key]['code'] }}</td>
-						<td style="text-align:right;">{{ quantity }}</td>
-						<td  style="text-align:right;">₹ {{ price }}</td>
-						<td  style="text-align:right;">₹ {{ item_price }}</td>
-						<td style="text-align:center;">
-							<a href="{{ url_for('.delete_product', code=session['cart_item'][key]['code']) }}" class="btnRemoveAction">
-								<img src="/static/images/icon-delete.png" alt="Remove Item" />
-							</a>
-						</td>
-					</tr>
-				{% endfor %}
-				<tr>
-					<td colspan="2" align="right">Total:</td>
-					<td align="right">{{ session['all_total_quantity'] }}</td>
-					<td align="right" colspan="2"><strong>₹ {{ session['all_total_price'] }}</strong></td>
-					<td></td>
-				</tr>
-			</tbody>
-			</table>
-		{% else: %}
-			<div class="no-records">Your Cart is Empty</div>
-		{% endif %}
-	</div>
-
-	<div id="product-grid">
-		<div class="txt-heading">Products</div>
-
-		{% for product in products %}
-
-			<div class="product-item">
-				<form method="post" action="/add">
-					<div class="product-image"><img src="/static/images/{{ product.image }}"></div>
-					<div class="product-tile-footer">
-						<div class="product-title">{{ product.name }}</div>
-						<div class="product-price">₹ {{ product.price }}</div>
-						<div class="cart-action">
-							<input type="hidden" name="code" value="{{ product.code }}"/>
-							<input type="text" class="product-quantity" name="quantity" value="1" size="2" />
-							<input type="submit" value="Add to Cart" class="btnAddAction" />
-						</div>
-					</div>
-				</form>
-			</div>
-
-		{% endfor %}
-	
-	</div>
-</body>
 </html>

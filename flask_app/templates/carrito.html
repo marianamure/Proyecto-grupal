@@ -5,16 +5,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Carrito</title>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{url_for('static', filename='carrito.css')}}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/css/muro_comprador.css">
+    <link rel="stylesheet" href="../static/css/carrito.css">
+    
 
 </head>
 <body>
     <div class="container">
         <div class="col-12">
-            <header class="d-flex justify-content-between align-items-center">
-                <img src="../static/images/cannapp2.png" alt="cannapp_logo2" />
-                <h1>Bienvenid@ {{comprador.first_name}}</h1>
+            <header class="d-flex justify-content-between align-items-center"  id="barra">
+                <img class="logo" src="../static/images/logo claro.png" alt="logo_claro"/>  
+                <h1>Usuario: {{comprador.full_name}}</h1>
                 <a href="/muro_comprador" class="btn btn-danger">Atras</a>
                 <a href="/logout" class="btn btn-danger">Cerrar Sesión</a>
             </header>
@@ -32,19 +34,25 @@
                         </tr>
                     </thead>
                     <tbody>
-                        
+                        {% for key in ids_carrito %}
                             <tr>
-                                <td>{{producto.name}}</td>
-                                <td>1</td>
-                                <td>{{producto.price}}</td>
+                                <td>{{productos[key-1]['name']}}</td>
+                                <td>{{session['carrito'][key|string]}}</td>
+                                <td>{{productos[key-1]['price']}}</td>
                                 <td>
-                                    {{producto.price}}
+                                    {{session['carrito'][key|string]*productos[key-1]['price']|int}}
                                 </td>
                                 <td>
-                                    Actualizar - Eliminar
+                                    Actualizar - <a href="/quitar_producto_carrito/{{key}}" class="btn btn-danger btn-sm delete" data-confirm="Esta seguro de eliminar este elemento?">Borrar</a>
                                 </td>
                             </tr>
-                        
+                        {% endfor %}
+                            <tr>
+                                <td>Total acumulado</td>
+                                <td></td>
+                                <td></td>
+                                <td>{{session['total_carrito']}}</td>
+                            </tr>
                     </tbody>
                 </table>
             </div>

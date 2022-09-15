@@ -5,28 +5,34 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Finalizar compra</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="stylesheet" href="{{url_for('static', filename='compra.css')}}">
+    <link rel="shortcut icon" href="../static/images/logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Signika+Negative&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous"><link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="../static/css/muro_comprador.css">
+    <link rel="stylesheet" href="../static/css/carrito.css">
 </head>
 <body>
     <div class="container">
-        <header class="d-flex justify-content-end col-9">
-            <img src="../static/images/cannapp2.png" alt="cannapp_logo2" />
-            <div class="button">
-                <a href="/muro_comprador" class="btn btn-danger">Atras</a>
-                <a href="/logout" class="btn btn-danger">Cerrar Sesión</a>
-        </div>
+        <header class="d-flex justify-content-between align-items-center" id="barra">
+            <img class="logo" src="../static/images/logo claro.png" alt="logo_claro"/>                
+            <h1>Usuario: {{comprador.full_name}}</h1>
+
+            <a href="/logout" class="btn btn-danger"><img src="../static/images/salida.jpg" alt="salida" class="salida"/>Cerrar Sesión</a>
+            <a href="/muro_comprador"   class="btn btn-danger">Atras</a>
         </header>
-        <div class="row">
-            <div class="col-12" id="database">
-                
+
+        <div class="row mt-3">
+            <div class="col-2"></div>
+            <div class="col-6" id="database">
+                <h4>Información envío</h4>
                 <form action="/nuevo_dato" method="post" enctype="multipart/form-data"> 
                     <input type="hidden" value="{{comprador.id}}" name="user_id">
-                    
-                    <div class="form-group">
-                        <input type="checkbox" id="recibir" name="recibir" value="recibir_compra">
+                    <div class="form-group d-flex justify-content-center">
+                        <input type="radio" id="recibir" name="retirar" value="recibir_compra" checked>
                         <label for="recibir"> Recibir compra</label><br>
-                        <input type="checkbox" id="retirar" name="retirar" value="retirar_compra">
+                        <input type="radio" id="retirar" name="retirar" value="retirar_compra">
                         <label for="retirar"> Retirar en tienda</label><br>
                     </div>
                     <br>
@@ -36,17 +42,21 @@
                     </div>
                     <br>
                     <h4>Metodo de pago</h4>
-                    <div class="form-group">
-                        <input type="checkbox" id="transferencia" name="transferencia" value="transferencia">
+                    <div class="form-group d-flex justify-content-center">
+                        <input type="radio" id="transferencia" name="transferencia" value="transferencia">
                         <label for="transferencia"> Transferencia</label><br>
-                        <input type="checkbox" id="pse" name="pse" value="pse">
+                        <input type="radio" id="pse" name="transferencia" value="pse">
                         <label for="pse"> PSE</label><br>
                     </div>
-
-                        <input type="submit" value="Enviar" class="btn btn-secondary btn-lg">
+                    <div class="form-group">
+                        <label for="banco"><b>Banco:</b></label>
+                        <input type="text" id="banco" name="banco" class="form-control">
+                    </div>
+                        <input type="submit" value="Enviar" class="btn btn-secondary btn-lg mt-2" data-confirm="Esta seguro de finalizar la compra?">
                     </div>
                 </form>
-            </div>
+            <div class="col-2"></div>
+        </div>
         </div>
     </div>
 </body>

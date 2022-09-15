@@ -56,7 +56,7 @@ def vistamuro():
         'id': session['comprador_id']
     }
     comprador = Buyer.get_by_id(formulario)
- 
+
 
     productos = Product.get_all_for_buyers()
     return render_template('muro_comprador.html', comprador = comprador, productos = productos  )
@@ -64,50 +64,86 @@ def vistamuro():
 @app.route('/agregar_carritos', methods=['POST'])
 def agregar_carrito():
     
-    print(type (request.form['id']))
+    formulario = {
+        'id': request.form['id']
+    }
+
+    producto_agregar = Product.get_by_id(formulario)
+
     if 'carrito' not in session:
         session['carrito'] = {}
-        print("creando carrito")
-    print(session['carrito'].keys())
+        #print("creando carrito")
+    #print(session['carrito'].keys())
+    if 'total_carrito' not in session:
+        session['total_carrito'] = 0
+
     if request.form['id']  not in session['carrito']:
-        print("if")
         session['carrito'][request.form['id']] = 1
+        session['total_carrito'] += int(producto_agregar.price)
     else:
-        print(session['carrito'][request.form['id']])
-        print("else")
         session['carrito'][request.form['id']] += 1
-        print(session['carrito'][request.form['id']])
-    
-    print(session['carrito'])
-    
-    
-    
+        session['total_carrito'] += int(producto_agregar.price)
+
     session.modified = True
-     
     return redirect ('/muro_comprador')
 
 
-@app.route('/comprar/<int:id>')
-def agregar_producto_carrito(id):
+@app.route('/compra')
+def agregar_producto_carrito():
 
     if 'comprador_id' not in session:
         return redirect('/')
+
+    if 'carrito' not in session:
+        return redirect('/muro_comprador')
 
     formulario = {
         'id': session['comprador_id']
     }
 
-    formulario_producto = {
-        'id': id
+    comprador = Buyer.get_by_id(formulario)
+    productos = Product.get_all_for_buyers()
+    
+    ids_carrito = []
+    for key in session['carrito'].keys():
+        ids_carrito.append(int(key))
+    print(ids_carrito)
+
+    return render_template('carrito.html', comprador = comprador, productos = productos, ids_carrito = ids_carrito)
+
+@app.route('/quitar_producto_carrito/<int:id>')
+def quitar_producto_carrito(id):
+
+    if 'comprador_id' not in session:
+        return redirect('/')
+
+    if 'carrito' not in session:
+        return redirect('/muro_comprador')
+
+    formulario = {
+        'id': session['comprador_id']
     }
 
     comprador = Buyer.get_by_id(formulario)
     productos = Product.get_all_for_buyers()
-    producto = Product.get_by_id(formulario_producto)
 
-    #session['product_ids'].append(id)
+    formulario_quitar = {
+        'id': id
+    }
 
-    return render_template('carrito.html', comprador = comprador, productos = productos, producto = producto)
+    producto_quitar = Product.get_by_id(formulario_quitar)
+
+    for times in range(session['carrito'][str(id)]):
+        session['total_carrito'] -= int(producto_quitar.price)
+
+    session['carrito'].pop(str(id))
+
+    ids_carrito = []
+    for key in session['carrito'].keys():
+        ids_carrito.append(int(key))
+    print(ids_carrito)
+
+    return render_template('carrito.html', comprador = comprador, productos = productos, ids_carrito = ids_carrito, producto_quitar = producto_quitar)
 
 @app.route('/finalizar_compra')
 def finalizar_compra():
@@ -122,7 +158,6 @@ def finalizar_compra():
 
     # Metodo query guardar carro compra
     # Metodo query guardar información compra
-    
 
     return render_template('compra.html', comprador = comprador)
 
