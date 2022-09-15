@@ -13,9 +13,9 @@ class Crop:
         self.date = data['date']
         self.disease = data['disease']
         self.production = data['production']
-        self.description = data ['description']
-        self.image = data ['image']
-        self.share = data ['share']
+        self.description = data['description']
+        self.image = data['image']
+        self.share = data['share']
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
         self.cultivators_id = data['cultivators_id']
@@ -103,6 +103,24 @@ class Crop:
         query = "DELETE FROM crops WHERE id = %(id)s;"
         result = connectToMySQL('weedproject').query_db(query, formulario)
         return result
+
+    @classmethod
+    def all(cls):
+        query = "SELECT * FROM crops"
+        results = connectToMySQL('weedproject').query_db(query) 
+        crops = []
+        for crop in results:
+            crops.append(cls(crop)) 
+        return crops
+
+    @classmethod
+    def get_crops(cls):
+        query = "SELECT comments.*, crops.*, cultivators.full_name AS sender FROM comments LEFT JOIN cultivators ON cultivators.id = comments.cultivators_id LEFT JOIN crops ON crops.id = comments.crop_id"
+        results = connectToMySQL('weedproject').query_db(query) 
+        crops = []
+        for crop in results:
+            crops.append(cls(crop)) 
+        return crops
 
 """    @classmethod
     def delete2(cls, formulario):

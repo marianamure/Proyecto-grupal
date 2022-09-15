@@ -14,11 +14,12 @@ def muro_cultivador():
     formulario = {
         'id': session['cultivator_id']
     }
-
+    
     cultivator = Cultivator.get_by_id(formulario) #Usuario que inicio sesión
-    crop = Crop.get_crops()
+    crops = Crop.all()
+    comments = Crop.get_crops()
 
-    return render_template('muro_cultivador.html', cultivator=cultivator)
+    return render_template('muro_cultivador.html', cultivator=cultivator, crops=crops, comments = comments)
 
 @app.route('/send_comment', methods=['POST'])
 def send_comentario():

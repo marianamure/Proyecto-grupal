@@ -37,26 +37,24 @@
                                 <b>Descripcion:</b> {{crop.description}}
                             </div>
                             <div>
-                                <b>Imagen:</b> {{crop.image}}
-                                <img class="foto" src="{{ url_for('static', filename='images/'+crops.image ) }}" alt="foto" />
+                                <b>Imagen:</b>{{crop.image}}
+                                <img class="foto" src="{{ url_for('static', filename='images/'+crop.image)}}" alt="foto" />
                             </div>
                     
                             <h4>Comentarios Recibidos</h4>
-                            {% for comment in comments %}
+                            <hr>
+                                {% for comment in comments %}
                                 <div class="card">
                                     <div class="card-title">{{comment.sender}}dice:</div>
                                     <div class="card-text">{{comment.comment}}</div>                            
                                     <a class="btn btn-danger" href="/eliminar/comentario/{{comment.id}}"><img src="../static/images/borrar.jpg" alt="borrar" class="borrar">Borrar</a>                                                       
                                 </div>
-                            {% endfor %}
-
-                            <hr>
-
+                                {% endfor %}
                             <form action="/send_comentario" method="post">
                                 <label for="comentario" class="comentario"><b> Escribe tu comentario:</b></label>
                                 <input type="text" id="comentario" name="contenido" class="form-control">
-                                <input type="hidden" value="{{publicaciones.id}}" name="publicacion_id">
-                                <input type="hidden" value="{{user.id}}" name="user_id">
+                                <input type="hidden" value="{{crop.id}}" name="publicacion_id">
+                                <input type="hidden" value="{{cultivator.id}}" name="user_id">
                                 <br>
                                 <input type="submit" value="Enviar" class="btn btn-secondary">
                             </form>
