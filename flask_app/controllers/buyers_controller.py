@@ -6,6 +6,7 @@ from flask_app import app
 #Importación del modelo
 from flask_app.models.buyers import Buyer
 from flask_app.models.products import Product
+from flask_app.models.cultivators import Cultivator
 
 
 #Importación BCrypt
@@ -54,10 +55,37 @@ def vistamuro():
     formulario = {
         'id': session['comprador_id']
     }
-
     comprador = Buyer.get_by_id(formulario)
+ 
+
     productos = Product.get_all_for_buyers()
-    return render_template('muro_comprador.html', comprador = comprador, productos = productos)
+    return render_template('muro_comprador.html', comprador = comprador, productos = productos  )
+
+@app.route('/agregar_carritos', methods=['POST'])
+def agregar_carrito():
+    
+    print(type (request.form['id']))
+    if 'carrito' not in session:
+        session['carrito'] = {}
+        print("creando carrito")
+    print(session['carrito'].keys())
+    if request.form['id']  not in session['carrito']:
+        print("if")
+        session['carrito'][request.form['id']] = 1
+    else:
+        print(session['carrito'][request.form['id']])
+        print("else")
+        session['carrito'][request.form['id']] += 1
+        print(session['carrito'][request.form['id']])
+    
+    print(session['carrito'])
+    
+    
+    
+    session.modified = True
+     
+    return redirect ('/muro_comprador')
+
 
 @app.route('/comprar/<int:id>')
 def agregar_producto_carrito(id):
