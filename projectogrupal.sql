@@ -56,7 +56,7 @@ DEFAULT CHARACTER SET = utf8mb3;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `weedproject`.`crops` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `farm` VARCHAR(45) NULL,
+  `farm` VARCHAR(45) NULL DEFAULT NULL,
   `state` VARCHAR(150) NULL DEFAULT NULL,
   `municipality` VARCHAR(150) NULL DEFAULT NULL,
   `fertilizer` VARCHAR(150) NULL DEFAULT NULL,
@@ -89,15 +89,22 @@ CREATE TABLE IF NOT EXISTS `weedproject`.`comments` (
   `updated_at` DATETIME NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `crop_id` INT NOT NULL,
   `cultivators_id` INT NOT NULL,
+  `sender_id` INT NOT NULL,
   PRIMARY KEY (`id`),
   INDEX `fk_comments_crops1_idx` (`crop_id` ASC) VISIBLE,
   INDEX `fk_comments_cultivators1_idx` (`cultivators_id` ASC) VISIBLE,
+  INDEX `fk_comments_cultivators2_idx` (`sender_id` ASC) VISIBLE,
   CONSTRAINT `fk_comments_crops1`
     FOREIGN KEY (`crop_id`)
     REFERENCES `weedproject`.`crops` (`id`),
   CONSTRAINT `fk_comments_cultivators1`
     FOREIGN KEY (`cultivators_id`)
-    REFERENCES `weedproject`.`cultivators` (`id`))
+    REFERENCES `weedproject`.`cultivators` (`id`),
+  CONSTRAINT `fk_comments_cultivators2`
+    FOREIGN KEY (`sender_id`)
+    REFERENCES `weedproject`.`cultivators` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb3;
 
@@ -112,7 +119,7 @@ CREATE TABLE IF NOT EXISTS `weedproject`.`products` (
   `p_sale` TEXT NULL DEFAULT NULL,
   `presentation` VARCHAR(255) NULL DEFAULT NULL,
   `price` VARCHAR(45) NULL DEFAULT NULL,
-  `image` VARCHAR(255) NULL,
+  `image` VARCHAR(255) NULL DEFAULT NULL,
   `created_at` DATETIME NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` DATETIME NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `cultivators_id` INT NOT NULL,
@@ -154,21 +161,17 @@ CREATE TABLE IF NOT EXISTS `weedproject`.`shopping_cart` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `product_id` INT NOT NULL,
   `shopping_id` INT NOT NULL,
-  `amount` INT NULL,
+  `amount` INT NULL DEFAULT NULL,
   PRIMARY KEY (`id`, `product_id`, `shopping_id`),
   INDEX `fk_products_has_shopping_shopping1_idx` (`shopping_id` ASC) VISIBLE,
   INDEX `fk_products_has_shopping_products1_idx` (`product_id` ASC) VISIBLE,
   CONSTRAINT `fk_products_has_shopping_products1`
     FOREIGN KEY (`product_id`)
-    REFERENCES `weedproject`.`products` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    REFERENCES `weedproject`.`products` (`id`),
   CONSTRAINT `fk_products_has_shopping_shopping1`
     FOREIGN KEY (`shopping_id`)
-    REFERENCES `weedproject`.`shopping` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+    REFERENCES `weedproject`.`shopping` (`id`))
+ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb3;
 
 

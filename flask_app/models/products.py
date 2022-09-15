@@ -83,7 +83,7 @@ class Product:
         result = connectToMySQL('weedproject').query_db(query, formulario)
         return result
 
-    """@classmethod
+    @classmethod
     def update(cls, formulario):
         if(formulario['image'] != ''):
             query = "UPDATE products SET name=%(name)s, description=%(description)s, p_sale=%(p_sale)s, presentation=%(presentation)s, price=%(price)s, image=%(image)s WHERE id = %(id)s"
@@ -97,4 +97,4 @@ class Product:
         query = "DELETE FROM products WHERE id = %(id)s;"
         result = connectToMySQL('weedproject').query_db(query, formulario)
         return result
-    """
+    

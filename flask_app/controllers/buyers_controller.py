@@ -42,7 +42,7 @@ def registracomprador():
     #request.form = FORMULARIO HTML
     id = Buyer.save(formulario) #Recibo el identificador de mi nuevo usuario
 
-    session['user_id'] = id #Se guarda en sesion el id de usuario.
+    session['comprador_id'] = id #Se guarda en sesion el id de usuario.
 
     return jsonify(message="Correcto") #Se retorna
 
