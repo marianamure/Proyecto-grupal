@@ -108,7 +108,8 @@ class Buyer:
         result = connectToMySQL('weedproject').query_db(query, formulario) #RECIBIMOS UNA LISTA
         user = cls(result[0]) #creamos una instancia de usuario
         return user
-
+    
+   
 
 
 

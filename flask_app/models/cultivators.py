@@ -95,3 +95,13 @@ class Cultivator:
         result = connectToMySQL('weedproject').query_db(query, formulario) #RECIBIMOS UNA LISTA
         user = cls(result[0]) #creamos una instancia de usuario
         return user
+    
+    @classmethod
+    def get_all(cls):
+        query = "SELECT * FROM cultivators"
+        results = connectToMySQL('weedproject').query_db(query)#Regresa una lista de diccionarios
+        cultivators = []
+        for us in results:
+            cultivators.append(cls(us))#1 - cls(us) creando una instancia de user. 2- esa instancia la agrego a la lista de 
+            
+        return cultivators    
